@@ -3,20 +3,64 @@
   .- webpage-links is to stylize the top of the pages such as the color, type of font, and font size-->
    - book-or-movie-image is to default the size of the image of the movies/novels within the website-->
 */
-   .top-of-page {
-    background-color: rgb(140, 0, 255) 
-   }
-  
-   .webpage-link {
-    color: white;
-    font-family: Georgia, 'Times New Roman', Times, serif;
-    font-size: 25px;
-    padding: 8px;
+
+  /* "*" is a universal selector that applies these css styles to all elements in the page */
+  * {
+    padding: 0; /* The amount of space around a element's content within the borders, 0 space in this example */
+    margin: 0; /* The amount of space around a element's content outside of the borders*/
+    border: 0; /* The space between the padding and the margin */
+    outline: 0; /* A line drawn outside the border, size and colour */
+    vertical-align: baseline; /* Sets the vertical alignment of an image https://www.w3schools.com/cssref/pr_pos_vertical-align.asp */
+    background: transparent; 
   }
+
+
+  .nav {
+    display: grid;
+    grid-template-columns: auto auto auto auto auto;
+    background-color: rgb(42, 12, 124); 
+    padding: 0px;
+    margin: 0px;
+    height: 105px;
+  }
+
+  .nav ul {
+    display: grid;
+    grid-template-columns: auto auto auto;
+    grid-template-rows: 34px 0px;
+    padding: 28px;
+    text-align: center;
+    
+  }
+  .nav li {
+    display: inline;
+    text-align: left;
+    padding: 20px;
+  }
+
+  .nav a {
+    color: rgb(246, 255, 0);
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    font-size: 22px;
+  }
+
+  .website-image {
+    padding: 20px;
+    text-align: center;
+    grid-column: 1 / 2;
+
+  }
+
+  .nav .user-profile {
+    grid-column: 4 / 6;
+  }
+
 
   .book-or-movie-image {
     height: 250px;
     width: 200px;
+    padding: 10px;
+    flex-wrap: wrap;
   }
 
   
