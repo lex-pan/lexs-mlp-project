@@ -1,62 +1,56 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
+    <!--Used for ecoding? -->
     <meta charset="UTF-8">
-    <title>Novel Tracker</title>
+    <!--Title of this webpage-->
+    <title>My Reads</title>
+    <!--Code used to apply css style to this page using the style.css section-->
     <link rel="stylesheet" href="styles.css">
   </head>
 
+  <!-- This line is to make sure that links homepage, novels/movies/shows/graphic novels are on the same line --> 
   <body>
     <section>
-        <!--Area of buttons to get to different types of media-->
         <nav class="nav">
-          <div class="website-image"><a href="index.html"><img src="My-Reads.png" width = "300" height = "70"></a></div>
-
-          <div><ul>
-              <div><li><a href="movies.html">Movies</a></li></div>
-              <div><li><a href="comic_books.html">Comic Books</a></li></div>
-              <div><li><a href="novels.html">Novels</a></li></div>
-              <div><li><a href="movies.html">Forums</a></li></div>
-              <div><li><a href="comic_books.html">Browse</a></li></div>
-              <div><li><a href="novels.html">News</a></li></div>
-
+          <!--Image to get to homepage-->
+          <div><a href="index.html"><img src="website-images/My-Reads.png" class="My-Reads-Image"></a></div>
+          
+          <!--Area of buttons to get to different types of media-->
+          <div><ul> 
+            <li><a href="movies.html">Movies</a></li>
+            <li><a href="comic_books.html">Comic Books</a></li>
+            <li><a href="novels.html">Novels</a></li>
+            <li><a href="novels.html">Forums</a></li>
           </ul></div>
+          
+          <div class="search-bar">
+            <form>
+              <input type="text" id="search-bar" name="search-bar" placeholder="Search...">
+              <button class="search-button">Search</button>
+            </form>
+          </div>
 
-          <div class="user-profile"><p>User profile</p></div>
+          <div class="user-profile"><p>User</p></div>
 
         </nav>
-    </section>
-    <!--For new updates on upcoming shows, Recommendations, Populat this week-->
-
-    <section>
-      <div>
-        <img class="book-or-movie-image" src="book-cover-images/archeon-eon-art.jpg">
-        <span><a href="Novel-site.html">Archeon Eon Art</a></span>
-      </div>
-
-      <div>
-        <img class="book-or-movie-image" src="book-cover-images/archeon-eon-art.jpg">
-      </div>
-      <div>
-        <span><a href="Novel-site.html">Archeon Eon Art</a></span>
-      </div>
-
-      <div>
-        <img class="book-or-movie-image" src="book-cover-images/archeon-eon-art.jpg">
-      </div>
-      <div>
-        <span><a href="Novel-site.html">Archeon Eon Art</a></span>
-      </div>
-
-      <div>
-        <img class="book-or-movie-image" src="book-cover-images/archeon-eon-art.jpg">
-      </div>
-      <div>
-        <span><a href="Novel-site.html">Archeon Eon Art</a></span>
-      </div>
 
     </section>
     
+    <section>
+      <div class="sub-nav"><ul>
+        <li><a href="novel-homepage">Novel Homepage</a></li>
+        <li><a href="seasonal">Seasonal Novels</a></li>
+        <li><a href="All-Novels">All Novels</a></li> 
+      </ul></div>
+    </section>
+    <hr>
+
+
+
+    <section>
+    
+    </section>
 
   </body>
   
