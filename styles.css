@@ -15,45 +15,62 @@
     box-sizing: border-box;
   }
 
-hr {
-  background-color: rgb(217, 217, 217);
-  height: 1px;
-}
-
   .nav {
     display: grid;
     grid-template-columns: auto auto auto auto;
     background-color: rgb(42, 12, 124); 
-    height: 6.5em;
+    height: 4.2em;
   }
 
 
   .My-Reads-Image {
-    padding: 25px;
-    height: 80%;
-    width: 80%;
+    padding: 1em;
+    height: 4.5em;
+    width:  20em;
   }
 
-  .nav ul {
-    display: grid;
+  .main-nav {
+    display: flex;
     grid-template-columns: auto auto auto auto;
-    padding: 20px;
+    padding: 14px;
+    padding: 1.5em;
+    text-align: center;
   }
   
-  .nav li {
+  .top-nav-bar {
     display: inline;
-    text-align: left;
-    padding: 1em;
-  }
-
-  .nav a {
+    padding: 1.5em;
     color: rgb(246, 255, 0);
     font-family: Georgia, 'Times New Roman', Times, serif;
-    font-size: 1.25em;
+    font-size: 1.35em;
+  }
+
+  .sub-nav-list {
+    list-style-type: none;
+    display: none;
+  }
+
+  .sub-nav-list li {
+    padding:10px;
+  }
+
+  .sub-nav-list a {
+    color: rgb(246, 255, 0);
+    display: block;
+    font-size: 1em;
+  }
+
+  .main-nav div:hover .sub-nav-list{
+    display: block;
+    background-color: rgb(42, 12, 124);
   }
 
   .search-bar {
-    margin: 1.8em;
+    margin: 1em;
+  }
+
+  .search-bar form {
+    display: flex;
   }
 
   #search-bar {
@@ -61,42 +78,41 @@ hr {
     background: white;
     font-size: 1.35em;
     font-family: Georgia, 'Times New Roman', Times, serif;
-    padding: 10px;
+    padding: 7px;
   }
   
   .search-button {
-    color:rgb(42, 12, 124);
-    background-color: white;
+    color: white;
+    background-color: orange;
     font-size: 1.35em;
     font-family: Georgia, 'Times New Roman', Times, serif; /* font used for the search button */
     cursor: pointer; /* When hovering the search button, shows hand on mouse*/
-    padding: 10px;
+    padding: 7px;
   }
 
   .nav .user-profile {
+    margin: 1.2em;
     font-size: 20px;
     font-family: Georgia, 'Times New Roman', Times, serif;
     border-radius: 10px;
     color: rgb(246, 255, 0);
-    text-align: center;
-    padding: 50px
   }
 
   .sub-nav {
     padding: 15px;
-    margin: 5px;
+    background-color: rgb(58, 18, 168);
   }
 
   .sub-nav li {
     display: inline;
     flex: 1;
+    padding: 20px;
   }
 
   .sub-nav a{
-    color:rgb(42, 12, 124);
+    color:rgb(255, 255, 255);
     font-family: Georgia, 'Times New Roman', Times, serif;
     font-size: 18px;
-    margin: 1.25em;
   }
 
   .book-or-movie-image {
