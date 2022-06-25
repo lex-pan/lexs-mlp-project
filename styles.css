@@ -15,6 +15,8 @@
     box-sizing: border-box;
   }
 
+  /* Start of navigation area */
+
   .nav {
     display: grid;
     grid-template-columns: auto auto auto auto;
@@ -39,7 +41,7 @@
   
   .top-nav-bar {
     display: inline;
-    padding: 1.5em;
+    padding: 1em;
     color: rgb(246, 255, 0);
     font-family: Georgia, 'Times New Roman', Times, serif;
     font-size: 1.35em;
@@ -98,29 +100,64 @@
     color: rgb(246, 255, 0);
   }
 
-  .sub-nav {
-    padding: 15px;
-    background-color: rgb(58, 18, 168);
+  .sub-nav-title{
+    padding: 1em;
+    background-color: rgb(0, 153, 255);
   }
 
-  .sub-nav li {
-    display: inline;
-    flex: 1;
-    padding: 20px;
-  }
-
-  .sub-nav a{
+  .sub-nav-title h2{
     color:rgb(255, 255, 255);
     font-family: Georgia, 'Times New Roman', Times, serif;
-    font-size: 18px;
+    font-size: 1.2em;
+    text-align: center;
   }
+
+  /* End of Navigation Area */
 
   .book-or-movie-image {
     height: 20em;
     width: 15em;
-    padding: 10px;
+    padding: 0.5em;
+    border:1px solid rgb(0, 153, 255);
+  }
+
+  .media-display{
+    display: grid;
+    grid-template-columns: auto auto;
+    height: 22em;
+    width: 30em;
+  }
+
+  .media-display h3 {
+    margin-top: 1.5em;
+    grid-column: 1/3;
+    display: flex;
+    justify-content: center;
+    border:1px solid rgb(0, 153, 255);
+    background-color: rgb(0, 153, 255);
+    color:rgb(255, 255, 255);
+  }
+
+  .media-display p {
+    height: 20em;
+    width: 14em;
+    padding-top: 0.5em;
+    font-size: 1em;
+    border:1px solid rgb(0, 153, 255);
+  }
+
+  /* Start of Display area for multiple movies/comics/novels */
+
+  .all-movies-display {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, 30em);
+    margin-left: 6em;
+    margin-right: 6em;
+    justify-content: center;
+    align-items: center;
     flex-wrap: wrap;
   }
+
 
 
 
