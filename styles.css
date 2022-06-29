@@ -6,50 +6,48 @@
 
   /* "*" is a universal selector that applies these css styles to all elements in the page */
   * {
-    padding: 0; /* The amount of space around a element's content within the borders, 0 space in this example */
-    margin: 0; /* The amount of space around a element's content outside of the borders*/
+    padding: 0; /* The amount of space around a element's content within the borders, 0 space in this example*/
+    margin: 0; /* The amount of space around a element's content outside of the borders, by default a page will have margin and leave white space*/
     border: 0; /* The space between the padding and the margin */
     outline: 0; /* A line drawn outside the border, size and colour */
-    vertical-align: baseline; /* Sets the vertical alignment of an image https://www.w3schools.com/cssref/pr_pos_vertical-align.asp */
-    background: transparent; 
-    box-sizing: border-box;
+    vertical-align: baseline; /* Sets the vertical alignment of an image https://www.w3schools.com/cssref/pr_pos_vertical-align.asp */ 
   }
 
   /* Start of navigation area */
 
-  .nav {
-    display: grid;
-    grid-template-columns: auto auto auto auto;
-    background-color: rgb(42, 12, 124); 
-    height: 4.2em;
+  .nav { /* Navigation area */
+    display: grid; /* Creates a grid for the navigation area*/
+    grid-template-columns: auto auto auto auto; /* Number of columns within the navigation bar*/
+    background-color: rgb(56, 15, 168); 
+    height: 3.7em; /* em is size relative to screen of window */
   }
 
-
-  .My-Reads-Image {
-    padding: 1em;
-    height: 4.5em;
-    width:  20em;
+  .My-Reads-Image { /* Logo of website */
+    padding: 0.6em; 
+    height: 2.5em;
+    width:  16em;
   }
 
   .main-nav {
-    display: flex;
-    grid-template-columns: auto auto auto auto;
-    padding: 14px;
-    padding: 1.5em;
-    text-align: center;
+    display: flex; /* Keeps the dropdown items in a row */
+    padding: 1em;
+    text-align: center; /* centers the text, when nav bar is hovered */
   }
   
   .top-nav-bar {
-    display: inline;
-    padding: 1em;
+    padding-left: 2.5em;
+    padding-right: 2.5em;
+    padding-bottom: 0.9em;
+    padding-top: 0.7em;
     color: rgb(246, 255, 0);
     font-family: Georgia, 'Times New Roman', Times, serif;
-    font-size: 1.35em;
+    font-size: 1.3em;
   }
 
   .sub-nav-list {
-    list-style-type: none;
-    display: none;
+    list-style-type: none; /* when a list is created, there will be a list symbol beside the item and this style type will remove the symbol*/
+    display: none; /* To keep the sub nav bar hidden */
+    position: relative; /* Useful because it helps with z-index */
   }
 
   .sub-nav-list li {
@@ -57,36 +55,50 @@
   }
 
   .sub-nav-list a {
-    color: rgb(246, 255, 0);
-    display: block;
+    color: white;
+    display: block; /* Displays items on new lines  https://www.w3schools.com/cssref/tryit.asp?filename=trycss_display (link for different types of blocks with "hello world" as to what the blocks represent)*/
     font-size: 1em;
   }
 
   .main-nav div:hover .sub-nav-list{
     display: block;
-    background-color: rgb(42, 12, 124);
+    background-color: rgb(0, 153, 255);
+  }
+
+  .sub-nav-list li:hover {
+    background-color: rgb(56, 15, 168);
+  }
+
+  .sub-nav-list li:hover a{
+    color: rgb(246, 255, 0);
+  }
+
+  .main-nav div:hover  .top-nav-bar{
+    background-color: rgb(0, 153, 255);
+    color: white;
   }
 
   .search-bar {
-    margin: 1em;
+    margin: 0.8em; /* space outside the container */
   }
 
   .search-bar form {
-    display: flex;
+    display: flex; /* keeps the search bar tab and button together, otherwise the button will appear on the second line */
   }
 
   #search-bar {
-    text-align: left;
+    text-align: left; 
     background: white;
-    font-size: 1.35em;
+    font-size: 1em;
+    padding-left: 0.3em;
     font-family: Georgia, 'Times New Roman', Times, serif;
-    padding: 7px;
+    width: 70%;
   }
   
   .search-button {
     color: white;
     background-color: orange;
-    font-size: 1.35em;
+    font-size: 1em;
     font-family: Georgia, 'Times New Roman', Times, serif; /* font used for the search button */
     cursor: pointer; /* When hovering the search button, shows hand on mouse*/
     padding: 7px;
@@ -96,66 +108,136 @@
     margin: 1.2em;
     font-size: 20px;
     font-family: Georgia, 'Times New Roman', Times, serif;
-    border-radius: 10px;
     color: rgb(246, 255, 0);
   }
 
   .sub-nav-title{
+    display: flex;
+    justify-content: center;
     padding: 1em;
     background-color: rgb(0, 153, 255);
-  }
-
-  .sub-nav-title h2{
     color:rgb(255, 255, 255);
     font-family: Georgia, 'Times New Roman', Times, serif;
-    font-size: 1.2em;
-    text-align: center;
+    font-size: 0.8em;
+    z-index: -1; /*Sets the priority of elements, z-index -1 allows the sub nav bar to appear over the sub nav title in this case*/
   }
 
   /* End of Navigation Area */
 
-  .book-or-movie-image {
-    height: 20em;
-    width: 15em;
-    padding: 0.5em;
-    border:1px solid rgb(0, 153, 255);
+
+
+  /* Start of search, filter, and sort area */
+
+  .filter-sort-search{
+    color:rgb(0, 153, 255);
+    display: grid;
+    grid-template-columns: repeat(auto-fit, 17em);
+    justify-content: center;
+    list-style-type: none;
+    padding-top: 1em;
+    padding-bottom: 1em;
+    margin-left: 14em;
+    margin-right: 14em;
+    font-size: 0.9em;  
   }
 
-  .media-display{
+  .filter-sort-search h3 {
+    text-align: center;
+    border: 1px solid rgb(0, 153, 255);
+    margin-left: 1.2em;
+    margin-right: 1.2em;
+    margin-top: 1.2em;
+    padding: 0.25em
+  }
+
+  .filter-sort-search input{
+    width: 100%;
+  }
+
+  .types-of-filters {
+   /* display: none; */
+   display: grid;
+  }
+
+  .list-of-genres {
+    display: flex;
+    flex-wrap: wrap;
+  }
+
+  .list-of-genres p {
+    padding: 1em
+  }
+
+  .publication-status-choices {
+    list-style: none;
     display: grid;
-    grid-template-columns: auto auto;
-    height: 22em;
-    width: 30em;
+    text-align: center;
+    display: none;
+  }
+
+  .publication-status-choices li {
+    font-size: 1.2em;
+    padding: 5px;
+    border: 1px solid rgb(0, 153, 255);
+    margin-left: 1.2em;
+    margin-right: 1.2em;
+  }
+
+  
+
+
+   /* Start of layout for images, title of medias, and descriptions*/  
+   .book-or-movie-image {
+    height: 20em;
+    width: 15em;
+    border:1px solid rgb(0, 153, 255);
+    z-index: -1; 
   }
 
   .media-display h3 {
-    margin-top: 1.5em;
+    margin-top: 0.8em;
     grid-column: 1/3;
     display: flex;
     justify-content: center;
     border:1px solid rgb(0, 153, 255);
     background-color: rgb(0, 153, 255);
     color:rgb(255, 255, 255);
+    z-index: -1;
   }
 
   .media-display p {
-    height: 20em;
+    height: 19.5em;
     width: 14em;
     padding-top: 0.5em;
+    padding-left: 0.2em;
     font-size: 1em;
     border:1px solid rgb(0, 153, 255);
   }
+
+  .media-display{
+    display: grid;
+    grid-template-columns: auto auto;
+    height: 22.5em;
+    width: 30em;
+    justify-content: center;
+    align-items: center;
+    z-index: -1;
+  }
+
+  /* End of layout for images, title of medias, and descriptions*/  
+
+
 
   /* Start of Display area for multiple movies/comics/novels */
 
   .all-movies-display {
     display: grid;
     grid-template-columns: repeat(auto-fill, 30em);
-    margin-left: 6em;
-    margin-right: 6em;
+    margin-left: 5em;
+    margin-right: 5em;
+    flex-wrap: wrap;
     justify-content: center;
     align-items: center;
-    flex-wrap: wrap;
   }
 
 
