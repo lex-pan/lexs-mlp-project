@@ -5,7 +5,10 @@
 */
 
   /* "*" is a universal selector that applies these css styles to all elements in the page */
-  * {
+
+/* CSS Style that will be applied to each and every single page*/
+
+* {
     padding: 0; /* The amount of space around a element's content within the borders, 0 space in this example*/
     margin: 0; /* The amount of space around a element's content outside of the borders, by default a page will have margin and leave white space*/
     border: 0; /* The space between the padding and the margin */
@@ -32,6 +35,7 @@
     display: flex; /* Keeps the dropdown items in a row */
     padding: 1em;
     text-align: center; /* centers the text, when nav bar is hovered */
+    margin-top: 0.2em;
   }
   
   .top-nav-bar {
@@ -41,7 +45,7 @@
     padding-top: 0.7em;
     color: rgb(246, 255, 0);
     font-family: Georgia, 'Times New Roman', Times, serif;
-    font-size: 1.3em;
+    font-size: 1em;
   }
 
   .sub-nav-list {
@@ -105,142 +109,10 @@
   }
 
   .nav .user-profile {
-    margin: 1.2em;
+    margin: 0.9em;
     font-size: 20px;
     font-family: Georgia, 'Times New Roman', Times, serif;
     color: rgb(246, 255, 0);
   }
 
-  .sub-nav-title{
-    display: flex;
-    justify-content: center;
-    padding: 1em;
-    background-color: rgb(0, 153, 255);
-    color:rgb(255, 255, 255);
-    font-family: Georgia, 'Times New Roman', Times, serif;
-    font-size: 0.8em;
-    z-index: -1; /*Sets the priority of elements, z-index -1 allows the sub nav bar to appear over the sub nav title in this case*/
-  }
-
   /* End of Navigation Area */
-
-
-
-  /* Start of search, filter, and sort area */
-
-  .filter-sort-search{
-    color:rgb(0, 153, 255);
-    display: grid;
-    grid-template-columns: repeat(auto-fit, 17em);
-    justify-content: center;
-    list-style-type: none;
-    padding-top: 1em;
-    padding-bottom: 1em;
-    margin-left: 14em;
-    margin-right: 14em;
-    font-size: 0.9em;  
-  }
-
-  .filter-sort-search h3 {
-    text-align: center;
-    border: 1px solid rgb(0, 153, 255);
-    margin-left: 1.2em;
-    margin-right: 1.2em;
-    margin-top: 1.2em;
-    padding: 0.25em
-  }
-
-  .filter-sort-search input{
-    width: 100%;
-  }
-
-  .types-of-filters {
-   /* display: none; */
-   display: grid;
-  }
-
-  .list-of-genres {
-    display: flex;
-    flex-wrap: wrap;
-  }
-
-  .list-of-genres p {
-    padding: 1em
-  }
-
-  .publication-status-choices {
-    list-style: none;
-    display: grid;
-    text-align: center;
-    display: none;
-  }
-
-  .publication-status-choices li {
-    font-size: 1.2em;
-    padding: 5px;
-    border: 1px solid rgb(0, 153, 255);
-    margin-left: 1.2em;
-    margin-right: 1.2em;
-  }
-
-  
-
-
-   /* Start of layout for images, title of medias, and descriptions*/  
-   .book-or-movie-image {
-    height: 20em;
-    width: 15em;
-    border:1px solid rgb(0, 153, 255);
-    z-index: -1; 
-  }
-
-  .media-display h3 {
-    margin-top: 0.8em;
-    grid-column: 1/3;
-    display: flex;
-    justify-content: center;
-    border:1px solid rgb(0, 153, 255);
-    background-color: rgb(0, 153, 255);
-    color:rgb(255, 255, 255);
-    z-index: -1;
-  }
-
-  .media-display p {
-    height: 19.5em;
-    width: 14em;
-    padding-top: 0.5em;
-    padding-left: 0.2em;
-    font-size: 1em;
-    border:1px solid rgb(0, 153, 255);
-  }
-
-  .media-display{
-    display: grid;
-    grid-template-columns: auto auto;
-    height: 22.5em;
-    width: 30em;
-    justify-content: center;
-    align-items: center;
-    z-index: -1;
-  }
-
-  /* End of layout for images, title of medias, and descriptions*/  
-
-
-
-  /* Start of Display area for multiple movies/comics/novels */
-
-  .all-movies-display {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, 30em);
-    margin-left: 5em;
-    margin-right: 5em;
-    flex-wrap: wrap;
-    justify-content: center;
-    align-items: center;
-  }
-
-
-
-
-  

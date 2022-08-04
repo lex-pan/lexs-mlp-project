@@ -6,7 +6,11 @@
     <!--Title of this webpage-->
     <title>My Reads</title>
     <!--Code used to apply css style to this page using the style.css section-->
-    <link rel="stylesheet" type="text/css" href="../styles.css">
+    <link rel="stylesheet" type="text/css" href="../css-styles/navigation.css">
+    <link rel="stylesheet" type="text/css" href="../css-styles/sub-nav-title-and-filter-area.css">
+    <link rel="stylesheet" type="text/css" href="../css-styles/display-content.css">
+    <script src="../website_functions.js">
+    </script>
   </head>
 
   <!-- This line is to make sure that links homepage, novels/movies/shows/graphic novels are on the same line --> 
@@ -73,21 +77,21 @@
       <div class="sub-nav-title"><h2>All Movies</h2></div>
     </section>
 
-    <section class="filter-sort-search">
-      <div>
-        <h3><input type="text" name="search-bar" placeholder="Search"></h3>
+    <section class="filter-sort-search"> 
+      <div class="dropdown">
+        <input type="text" name="search-bar" placeholder="Search">
       </div>
       
       <div>
-        <h3>Sort</h3>
-        <!-- <ul class="sort-options">
+        <button class="filter-button"><h3>Sort</h3></button>
+        <ul class="types-of-filters">
           <li><p>Sort by Popularity</p></li>
           <li><p>Sort by Score</p></li>
           <li><p>Sort by Alphabet</p></li>
           <li><p>Sort by Title</p></li>
         </ul>
 
-        <ul class="dates-seasonal-all-time">
+        <!-- <ul class="dates-seasonal-all-time">
           <li><p>This week</p></li>
           <li><p>This month</p></li>
           <li><p>This season</p></li>
@@ -95,25 +99,23 @@
         </ul> -->
       </div>
       
-      <div>
-        <h3>Genres And Themes</h3> <!--By genre, status of publication, year of release, country of origin-->
-        <!--
-        <div>
-          <p>Action<p>
-          <p>Comedy<p>
-          <p>Drama<p>
-          <p>Fantasy<p>
-          <p>Horror<p>
-          <p>Mystery<p>
-          <p>Romance<p>
-          <p>Thriller<p>
-        </div>
-        -->
+      <div class="dropdown">
+        <button class="filter-button"><h3>Genres And Themes</h3></button> <!--By genre, status of publication, year of release, country of origin-->
+        <ul class="types-of-filters">
+          <li><p>Action<p></li>
+          <li><p>Comedy<p></li>
+          <li><p>Drama<p></li>
+          <li><p>Fantasy<p></li>
+          <li><p>Horror<p></li>
+          <li><p>Mystery<p></li>
+          <li><p>Romance<p></li>
+          <li><p>Thriller<p></li>
+        </ul>
       </div> 
 
-      <div>
-        <h3>Status of Publication</h3>
-        <ul class="publication-status-choices">
+      <div class="dropdown">
+        <button class="filter-button"><h3 filter-button>Status of Publication</h3></button>
+        <ul class="types-of-filters">
           <li><p>Ongoing</p></li>
           <li><p>Finished</p></li>
           <li><p>On Hiatus</p></li>
@@ -121,12 +123,12 @@
         </ul>
       </div>
 
-      <div>
-        <h3>Year</h3>
+      <div class="dropdown">
+        <button class="filter-button"><h3>Year</h3></button>
       </div>
 
-      <div>
-        <h3>Country of Origin</h3>
+      <div class="dropdown">
+        <button class="filter-button"><h3>Country of Origin</h3></button>
       </div>
 
     </section>
