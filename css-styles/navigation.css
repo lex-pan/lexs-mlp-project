@@ -41,8 +41,8 @@
   .top-nav-bar {
     padding-left: 2.5em;
     padding-right: 2.5em;
-    padding-bottom: 0.9em;
-    padding-top: 0.7em;
+    padding-bottom: 1.2em;
+    padding-top: 1em;
     color: rgb(246, 255, 0);
     font-family: Georgia, 'Times New Roman', Times, serif;
     font-size: 1em;
@@ -52,6 +52,7 @@
     list-style-type: none; /* when a list is created, there will be a list symbol beside the item and this style type will remove the symbol*/
     display: none; /* To keep the sub nav bar hidden */
     position: relative; /* Useful because it helps with z-index */
+    margin-top: 1.3em;
   }
 
   .sub-nav-list li {
@@ -62,25 +63,26 @@
     color: white;
     display: block; /* Displays items on new lines  https://www.w3schools.com/cssref/tryit.asp?filename=trycss_display (link for different types of blocks with "hello world" as to what the blocks represent)*/
     font-size: 1em;
+    color: rgb(246, 255, 0);
+  }
+
+  .top-nav-bar:hover{
+    border: 1px solid black;
+    margin: -1px;
+    background-color: rgb(74, 25, 211);
   }
 
   .main-nav div:hover .sub-nav-list{
     display: block;
-    background-color: rgb(0, 153, 255);
+    background-color: rgb(56, 15, 168)
   }
 
   .sub-nav-list li:hover {
-    background-color: rgb(56, 15, 168);
+    border: 1px solid black;
+    margin: -1px;
+    background-color: rgb(74, 25, 211);
   }
 
-  .sub-nav-list li:hover a{
-    color: rgb(246, 255, 0);
-  }
-
-  .main-nav div:hover  .top-nav-bar{
-    background-color: rgb(0, 153, 255);
-    color: white;
-  }
 
   .search-bar {
     margin: 0.8em; /* space outside the container */
@@ -108,11 +110,16 @@
     padding: 7px;
   }
 
-  .nav .user-profile {
+  .user-profile {
     margin: 0.9em;
+    margin-right: 3em;
     font-size: 20px;
     font-family: Georgia, 'Times New Roman', Times, serif;
     color: rgb(246, 255, 0);
+  }
+
+  .user-profile p {
+    text-align: right;  
   }
 
   /* End of Navigation Area */

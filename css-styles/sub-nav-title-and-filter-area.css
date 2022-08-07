@@ -8,7 +8,7 @@
     color:rgb(255, 255, 255);
     font-family: Georgia, 'Times New Roman', Times, serif;
     font-size: 0.8em;
-    z-index: -1; /*Sets the priority of elements, z-index -1 allows the sub nav bar to appear over the sub nav title in this case*/
+    z-index: -1; /*Sets the priority of elements, z-index 1 allows the sub nav bar to appear over the sub nav title in this case*/
   }
 
 
@@ -41,6 +41,7 @@
     border: 1px solid rgb(0, 153, 255);
     color:rgb(0, 153, 255);
     padding: 0.4em;
+    z-index: -1;
   } 
 
   .filter-sort-search input{
@@ -68,6 +69,35 @@
     margin-right: 0.9em;
   }
 
+  .genres-and-themes-filters {  
+    visibility: hidden;
+    position: absolute;
+    list-style: none;
+    left: 12.4%;
+    right: 12.4%;
+    display: grid;  
+    grid-template-columns: repeat(auto-fill, 8em);
+    justify-content: center;
+    margin-top: 0.6em;
+    padding-top: 1em;
+    padding-bottom: 1em;
+    border: 1px solid rgb(0, 153, 255);
+    background-color: white;
+  }
+
+  .genres-and-themes-filters li {
+    padding-left: 1em;
+    padding-right: 1em;
+    padding: 0.3em;
+    text-align: center;
+  }
+
+
+  .genres-and-themes-filters p {
+    font-size: 1.2em;
+  }
+
+
 
   /* Area for Dropdown */
 
@@ -81,6 +111,15 @@
   
   button.active  + .types-of-filters{
     display: block;
+  }
+
+  button.active + .genres-and-themes-filters {
+    visibility: visible;
+  }
+
+  .types-of-filters li:hover {
+    background-color: rgb(0, 153, 255);
+    color: white;
   }
 
 
