@@ -6,7 +6,7 @@
     z-index: -1; 
   }
 
-  .media-display h3 {
+  .media-title {
     margin-top: 0.8em;
     grid-column: 1/3;
     display: flex;
@@ -16,7 +16,7 @@
     z-index: -1;
   }
 
-  .media-display p {
+  .media-description {
     height: 19.5em;
     width: 14em;
     padding-top: 0.5em;
@@ -41,7 +41,7 @@
 
   /* Start of Display area for multiple movies/comics/novels */
 
-  .all-movies-display {
+  #all-movies-display {
     display: grid;
     grid-template-columns: repeat(auto-fill, 30em);
     margin-left: 1em;

@@ -28,6 +28,16 @@
     font-size: 0.9em;  
   }
 
+  .filter-sort-search input{
+    width: 87.3%;
+    height: 2.3em;
+    border: 1px solid rgb(0, 153, 255);
+    margin: 1em;
+    margin-right: 0;
+    padding-left: 0.4em;
+  }
+
+
    .filter-button {
     margin-top: 1em;
     margin-left: 1em;
@@ -43,14 +53,6 @@
     padding: 0.4em;
     z-index: -1;
   } 
-
-  .filter-sort-search input{
-    width: 87.3%;
-    height: 2.3em;
-    border: 1px solid rgb(0, 153, 255);
-    margin: 1em;
-    padding-left: 0.4em;
-  }
 
   .types-of-filters {
     position: relative;
@@ -78,7 +80,7 @@
     display: grid;  
     grid-template-columns: repeat(auto-fill, 8em);
     justify-content: center;
-    margin-top: 0.6em;
+    margin-top: 0.3em;
     padding-top: 1em;
     padding-bottom: 1em;
     border: 1px solid rgb(0, 153, 255);
