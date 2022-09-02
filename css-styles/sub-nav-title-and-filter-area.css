@@ -59,6 +59,7 @@
     list-style: none;
     text-align: center;
     display: None; 
+    z-index: 2;
   }
 
   .types-of-filters li {
@@ -67,8 +68,8 @@
     background-color: white;
     color: rgb(0, 153, 255);
     border: 1px solid rgb(0, 153, 255);
-    margin-left: 0.8em;
-    margin-right: 0.9em;
+    margin-left: 0.75em;
+    margin-right: 0.85em;
   }
 
   .genres-and-themes-filters {  
@@ -85,6 +86,7 @@
     padding-bottom: 1em;
     border: 1px solid rgb(0, 153, 255);
     background-color: white;
+    z-index: 2;
   }
 
   .genres-and-themes-filters li {
