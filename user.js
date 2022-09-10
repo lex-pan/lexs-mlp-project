@@ -10,4 +10,12 @@ class user {
     add_item(item) {
         this.library_of_books.push(item)
     }
+
+    delete_item(item) {
+
+    }
+
+    update_item(item) {
+
+    }
 }

@@ -1,3 +1,27 @@
+class User {
+    constructor(username, password) {
+        this.username = username;
+        this.password = password;
+        this.library_of_films = {};
+        this.library_of_books = {};
+    }
+
+    add_item(title, book) {
+        this.library_of_books[title] = book;
+        return this.library_of_books;
+    }
+
+    delete_item(item) {
+    
+    }
+
+    update_item(item) {
+
+    }
+}
+
+var userLex = new User("lexus", "asdhjx");
+
 // This function is used to open the dropdowns to filter search results //
 document.addEventListener('click', e => {
     const checkIfDropDownButton = e.target.matches('h3');       //checks if filter button is being clicked//
@@ -44,6 +68,11 @@ function mbnSearch() {
     }
 }
 
+
+function myFunction() {
+    alert ("Hello World!");
+  } 
+
 // Displays the data //
 function displaySearchResults(data) {
 
@@ -61,87 +90,76 @@ function displaySearchResults(data) {
         const dataDiv = document.createElement('div'); 
         dataDiv.classList.add("media-display");
 
-        const dataTitle = document.createElement('h3');
-        dataTitle.classList.add("media-title");
-        dataTitle.innerHTML = dataInfo.title;
+        const dataTitle = dataInfo.title;
 
-        const dataImage = document.createElement('img');
-        dataImage.classList.add("book-or-movie-image");
-        try {
-            dataImage.src = dataInfo.imageLinks.thumbnail;
-        }
-        catch {
-            dataImage.src = "website-images/Image-Not-Available.png"
+        let dataImage = null;
+        if (dataInfo.imageLinks != undefined){
+            dataImage = dataInfo.imageLinks.thumbnail;
+        } else {
+            dataImage = document.createElement('img');
+            dataImage.src = "website-images/Image-Not-Available.png";
         }
 
-        const dataDescription = document.createElement('p');
-        dataDescription.classList.add("media-description");
-        dataDescription.innerHTML = dataInfo.description;
 
-        // const dataRating = document.createElement('div');
-        // dataRating.classList.add("rating-container");
-        // const avgUserRating = dataInfo.averageRating;
-        // dataRating.append(avgUserRating)
+        let dataDescription = dataInfo.description;
+        if (dataDescription == undefined) {
+            dataDescription = "No description"
+        }
 
-        const dataRating = createStarRating(dataInfo.averageRating);
+        const starPercentage = createStarRating(dataInfo.averageRating)
+        let averageRating = dataInfo.averageRating
+        if (averageRating == undefined) {
+            averageRating = 0
+        }
 
-        // Adds all new data into the div //
-        dataDiv.appendChild(dataTitle);
-        dataDiv.appendChild(dataImage);
-        dataDiv.appendChild(dataDescription);
-        dataDiv.appendChild(dataRating);
-
-        applyRating(dataDiv)
-
-        // applyRating(dataDiv) //
-
+        dataDiv.innerHTML = // the data rating shows the percentage that the star should be covered//
+        `
+        <h3 class="media-title">${dataTitle}</h3>
+        <img class="book-or-movie-image" src=${dataImage}>
+        <p class="media-description">${dataDescription}</p>
+        <div class="rating-container">
+            <div class="stars-outer">
+                <div class="stars-inner" style="width:${starPercentage}"></div>  
+            </div>
+            <span>&nbsp&nbsp${averageRating}</span>
+            <span class="item-adder-icon"></span>
+        </div>
+        `
         const displaySection = document.getElementById('all-movies-display'); // Creates section for displaying data//
         displaySection.appendChild(dataDiv); // adds the div into section for displaying data //
+
+        let allDataInfo = {
+            title: dataTitle,
+            image: dataImage,
+            description: dataDescription,
+            rating: averageRating
+        }
+
+        // ()=> console.log(1)
+        dataDiv.getElementsByClassName("item-adder-icon")[0].addEventListener('click', () => userLex.add_item(dataTitle, allDataInfo))
     }
-    
 }
+
+
 
 function createStarRating(rating){
-    const container = document.createElement('div');
-    container.classList.add("rating-container")
-    // container.classList.add("rating-container");
+    if (rating == undefined) {
+        return 0
+    } else {
+        const starsTotal = 5;
 
-    const starOuter = document.createElement('div');
-    starOuter.classList.add("stars-outer");
-    const starInner = document.createElement('div');
-    starInner.classList.add("stars-inner");
-
-    applyRating(starInner, rating);
-    starOuter.appendChild(starInner);
-    container.appendChild(starOuter);
-
-
-
-
-    return container;
-
-    /*
-
-          <div class="stars-outer">
-            <div class="stars-inner"></div>
-          </div>
-          <span class="number-rating"></span>
-    */
-
+        // Get percentage
+        const starPercentage = (rating / starsTotal) * 100;
+    
+        let starPercentageRounded = `${Math.round(starPercentage / 10) * 10}%`;
+    
+        roundUp = {"30%":"28%" ,"70%":"72%", "90%":"93.5%"};
+        compare = ["30%", "70%", "90%"];
+    
+        if (compare.includes(starPercentageRounded)) {
+            starPercentageRounded = roundUp[starPercentageRounded];
+        } 
+         return starPercentageRounded;
+    }
 }
 
-function applyRating(starInner, rating ) {
-
-    const starsTotal = 5;
-
-    // Get percentage
-    const starPercentage = (rating / starsTotal) * 100;
-
-    // Round to nearest 10
-    const starPercentageRounded = `${Math.round(starPercentage / 10) * 10}%`;
-
-    // starPercentageRounded = (Math.round((rate / 5) / 100));
-    // console.log(ratings)   
-
-    starInner.style.width = starPercentageRounded;
-}
