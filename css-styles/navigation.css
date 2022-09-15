@@ -53,10 +53,13 @@
     display: none; /* To keep the sub nav bar hidden */
     position: relative; /* Useful because it helps with z-index */
     margin-top: 1.3em;
+    z-index: 3;
   }
 
   .sub-nav-list li {
+    position: relative;
     padding:10px;
+    z-index: 3;
   }
 
   .sub-nav-list a {
@@ -108,6 +111,10 @@
     font-family: Georgia, 'Times New Roman', Times, serif; /* font used for the search button */
     cursor: pointer; /* When hovering the search button, shows hand on mouse*/
     padding: 7px;
+  }
+
+  a {
+    color: inherit;
   }
 
   .user-profile {

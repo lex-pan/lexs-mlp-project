@@ -8,7 +8,7 @@
     color:rgb(255, 255, 255);
     font-family: Georgia, 'Times New Roman', Times, serif;
     font-size: 0.8em;
-    z-index: -1; /*Sets the priority of elements, z-index 1 allows the sub nav bar to appear over the sub nav title in this case*/
+    z-index: 3; /*Sets the priority of elements, z-index 1 allows the sub nav bar to appear over the sub nav title in this case*/
   }
 
 
