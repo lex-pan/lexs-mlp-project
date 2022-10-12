@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <!--Used for ecoding? -->
+    <meta charset="UTF-8">
+    <!--Title of this webpage-->
+    <title>My Reads</title>
+    <!--Code used to apply css style to this page using the style.css section-->
+    <link rel="stylesheet" type="text/css" href="../css-styles/navigation.css">
+    <link rel="stylesheet" type="text/css" href="../css-styles/sub-nav-title-and-filter-area.css">
+    <link rel="stylesheet" type="text/css" href="../css-styles/scrollbar.css">
+    <link rel="stylesheet" type="text/css" href="../css-styles/user-page-layout.css">
+    <script src="https://kit.fontawesome.com/6e3ad9090d.js" crossorigin="anonymous"></script>
+    <script src="../javascript-frontend/display_books.js"></script>
+    <script src="../javascript-frontend/click_dropdowns.js"></script>
+    <script src="../api/user.js"></script>
+  </head>
+
+  <!-- This line is to make sure that links homepage, novels/movies/shows/graphic novels are on the same line --> 
+  <body>
+    <section>
+      <nav class="nav">
+        <!--Image to get to homepage-->
+        <div><a href="../index.html"><img src="../website-images/My-Reads.png" class="My-Reads-Image"></a></div>
+        
+        <!--Area of buttons to get to different types of media-->
+        <div class="main-nav">
+        
+        <div>
+            <h class="top-nav-bar">Films</h>
+            <ul class="sub-nav-list">
+            <li><a href="../films/seasonal-films.html">Seasonal Films</a></li>
+            <li><a href="../films/all-films.html">All Films</a></li> 
+            <li><a href="../films/film_news_and_homepage.html">Movie News <br> and Homepage</a></li>
+            </ul>
+        </div>
+
+        <div>
+            <h class="top-nav-bar">Books</h>
+            <ul class="sub-nav-list">
+            <li><a href="seasonal-books.html">Seasonal books</a></li>
+            <li><a href="all-books.html">All Books</a></li> 
+            <li><a href="book-news-and-homepage.html">Novel News <br> and Homepage</a></li>
+            </ul>
+        </div>
+
+        <div>
+            <h class="top-nav-bar">Forums</h>
+        </div>
+
+        </div>
+        
+        <div class="search-bar">
+        <form>
+            <input type="text" id="search-bar" name="search-bar" placeholder="Search...">
+            <button class="search-button">Search</button>
+        </form>
+        </div>
+
+        <div class="user-profile"><a href="user.html"><p>User</p></a></div>
+
+      </nav>
+    </section>
+
+    <section class="-user-">
+        <div class="sub-nav-title"><h2>User Login Page</h2></div>
+        <form class="user-login-section" onsubmit="login(event); return false">
+            <input type="text" name="username" class="login username" placeholder="Type in username">
+            <input type="text" name="password" class="login password" placeholder="Type in password">
+            <input type="text" name="email" class="login email" placeholder="Type in Email, optional">
+            <button type="submit">Register</button>
+        </form>
+    </section>
+  </body>
+    
+  
+  </html>
