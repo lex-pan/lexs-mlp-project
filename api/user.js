@@ -49,5 +49,20 @@ async function login(event){
 }
 
 function loadUserInformation(token){
-  console.log(token)
+  sessionStorage.setItem("loggedIn", true)
+  sessionStorage.setItem("userInfo", token)
+  console.log(sessionStorage)
+} 
+var loggedIn = sessionStorage.getItem("loggedIn")
+
+function checkIfUserLoggedIn() {
+  if (loggedIn == null) {
+    alert("You must be signed in to bookmark")
+    return "Not logged in"
+  } else {
+    return "User logged in"
+  }
+}
+
+async function addToCollection(event) {
 }

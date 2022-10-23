@@ -5,8 +5,7 @@ async function authenticateUser(username, password, users) {
         return "Either the username or password is incorrect"
     }
     try {
-        passwordComparision = await (bcrypt.compare(password, users[username].password))
-        console.log(passwordComparision)    
+        passwordComparision = await (bcrypt.compare(password, users[username].password))  
         if (passwordComparision == true) {
             return (user[username])
         } else {

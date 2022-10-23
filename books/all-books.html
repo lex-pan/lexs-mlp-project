@@ -13,6 +13,7 @@
     <script src="https://kit.fontawesome.com/6e3ad9090d.js" crossorigin="anonymous"></script>
     <script src="../javascript-frontend/display_books.js"></script>
     <script src="../javascript-frontend/click_dropdowns.js"></script>
+    <script src="../api/user.js"></script>
 
   </head>
 
@@ -165,7 +166,7 @@
 
 
       <section id="all-movies-display">
-        <form class="book-submit">
+        <form class="book-submit" onsubmit="addToCollection(event); return false">
             <button type="button" class="close-form">x</button>
             <div class="user-read-watch-status">
               <label>Reading Status:</label>

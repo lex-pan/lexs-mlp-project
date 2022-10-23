@@ -5,8 +5,8 @@ const authenticateUser = require('./authenticate-User');
 
 var users = {
     lexus: {
-        password: '$2b$10$e5IbcDMC8Qhp5Zb3/4jRvecY/LKRNzVRi3JisjiRs2ODAINnUTtNu',
-        email: 'lexiang.pan@gmail.com',
+        password: '$2b$10$1GR.1Hjd3byzWsAHaYZvhOxqgIZjHT3u241fIGfphyz75qwqQlUKm',
+        email: 'throwawayemail@gmail.com',
         userStatistics: {},
         listOfBooks: {},
         listOfFilms: {}
@@ -19,8 +19,8 @@ app.use(express.json());
 
 app.post('/login', async(req, res)=>{
     const username = req.body.username
-    const hashedpassword = await bcrypt.hash(req.body.password, 10)
-    const verify = await authenticateUser(username, hashedpassword, users)
+    const password = req.body.password
+    const verify = await authenticateUser(username, password, users)
     if (verify == "Either the username or password is incorrect") {
         res.json("failure")
     } else {

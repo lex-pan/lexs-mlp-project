@@ -134,8 +134,11 @@ function createStarRating(rating){
 }
 
 function userBookorFilmSubmitForm(itemInfo) {
-    const bookOrFilmForm = document.getElementsByClassName('book-submit')[0]
-    bookOrFilmForm.classList.add('sectionDisplay')
+    if (checkIfUserLoggedIn() == "User logged in") {
+        const bookOrFilmForm = document.getElementsByClassName('book-submit')[0]
+        bookOrFilmForm.classList.add('sectionDisplay')
+    }
+    
 }
 
 function closeSubmitForm() {
