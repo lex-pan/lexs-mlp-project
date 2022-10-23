@@ -1,3 +1,33 @@
+// This function is used to open and close the dropdowns to filter search results //
+// applied to filters: Sort, Genres and Themes, Status of Publication, Year, Country of origin //
+document.addEventListener('click', e => {
+    const checkIfDropDownButton = e.target.matches('h3');       //checks if filter button is being clicked//
+    let openDropDown = e.target.closest('button.filter-button');      //finds the closest button//
+    let dropDowns = document.querySelectorAll('button.filter-button.active');     // Gets a list of all elements that match the specified group of selectors.//
+
+    //Opens dropdown when clicked//
+    if (checkIfDropDownButton && openDropDown != null) { 
+        openDropDown.classList.toggle('active');        //When it's given this attribute, the list of filters is alerted and will display itself//
+    }
+
+    //Closes the list when clicked outside//
+    if (!checkIfDropDownButton && !e.target.matches('li') && !e.target.matches('p')) {
+        
+        //Since dropdowns selects all elements with said attribute, it returns a list, therefore we must iterate through each item within the list and remove each attribute.// 
+        for(let i = 0; i < dropDowns.length; i ++){ 
+            dropDowns[i].classList.remove("active");
+        }
+    }
+
+    //Want to close dropdowns if another one is already opened when we click on another button for filters//
+    if (checkIfDropDownButton && dropDowns.length > 0) {
+
+        //removes all current active dropdowns//
+        for(let i = 0; i < dropDowns.length; i ++){
+            dropDowns[i].classList.remove("active");
+        }
+    }
+})
 
 function mbnSearch() {
     if (event.key === "Enter") { 
@@ -17,9 +47,9 @@ function displaySearchResults(data) {
 
     //Checks if there is already results displayed, if there is, remove current search results//
     let checkSearch = document.getElementById('all-movies-display')
-    let divsWithin = checkSearch.getElementsByTagName('div')
-    while (divsWithin.length > 0) {
-        divsWithin[0].remove()
+    let booksFilmsAlreadyPresent = checkSearch.getElementsByClassName('media-display')
+    while (booksFilmsAlreadyPresent.length > 0) {
+        booksFilmsAlreadyPresent[0].remove()
     }
 
     for (i=0; i < data.items.length; i++){
@@ -77,7 +107,7 @@ function displaySearchResults(data) {
         }
 
         // ()=> console.log(1)
-        dataDiv.getElementsByClassName("item-adder-icon")[0].addEventListener('click', () => userLex.add_item(dataTitle, allDataInfo))
+        dataDiv.getElementsByClassName("item-adder-icon")[0].addEventListener('click', () => userBookorFilmSubmitForm(allDataInfo))
     }
 }
 
@@ -103,8 +133,28 @@ function createStarRating(rating){
     }
 }
 
+function userBookorFilmSubmitForm(itemInfo) {
+    const bookOrFilmForm = document.getElementsByClassName('book-submit')[0]
+    bookOrFilmForm.classList.add('sectionDisplay')
+}
 
+function closeSubmitForm() {
+    visibileForm = document.getElementsByClassName('book-submit')[0]
+    visibileForm.classList.remove('sectionDisplay')
+}
 
+if (document.readyState == 'loading') {
+    document.addEventListener('DOMContentLoaded', ready)
+} else {
+    ready()
+}
 
+function ready() {
+    const closeButton = document.getElementsByClassName('close-form')[0]
+    const userBookorFilmSubmitButton = document.getElementsByClassName('user-selection-complete')[0]
+
+    closeButton.addEventListener('click', closeSubmitForm)
+    userBookorFilmSubmitButton.addEventListener('click', closeSubmitForm)
+}
 
 

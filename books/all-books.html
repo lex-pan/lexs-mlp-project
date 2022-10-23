@@ -164,7 +164,37 @@
       </section>
 
 
-      <section id="all-movies-display"></section>
+      <section id="all-movies-display">
+        <form class="book-submit">
+            <button type="button" class="close-form">x</button>
+            <div class="user-read-watch-status">
+              <label>Reading Status:</label>
+              <select>
+                <option selected hidden>Select Status</option>
+                <option value="completed">Completed</option>
+                <option value="reading">Reading</option>
+                <option value="dropped">Dropped</option>
+                <option value="Paused">Reading</option>
+              </select>
+            </div>
+
+            <div class="user-rating">
+              <label>Rating:</label>
+              <select class="status">
+                <option selected hidden>Select rating</option>
+                <option value="five">5 (Perfect)</option>
+                <option value="four">4 (Great)</option>
+                <option value="three">3 (Average)</option>
+                <option value="two">2 (Poor)</option>
+                <option value="one">1 (horrible)</option>
+              </select>
+            </div>
+
+            <textarea class="user-book-film-description" placeholder="thoughts on the book..."></textarea>
+            <button type="submit" class="user-selection-complete">Submit</button>
+                        
+        </form>
+      </section>
   
     </body>
     

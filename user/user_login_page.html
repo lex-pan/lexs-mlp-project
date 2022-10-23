@@ -11,8 +11,8 @@
     <link rel="stylesheet" type="text/css" href="../css-styles/scrollbar.css">
     <link rel="stylesheet" type="text/css" href="../css-styles/user-page-layout.css">
     <script src="https://kit.fontawesome.com/6e3ad9090d.js" crossorigin="anonymous"></script>
-    <script src="../javascript-frontend/display_books.js"></script>
     <script src="../javascript-frontend/click_dropdowns.js"></script>
+    <script src="../api/user.js"></script>
   </head>
 
   <!-- This line is to make sure that links homepage, novels/movies/shows/graphic novels are on the same line --> 
@@ -63,11 +63,11 @@
 
     <section class="-user-">
         <div class="sub-nav-title"><h2>User Login Page</h2></div>
-        <form class="user-login-section" action="/user/user_login_page" method="GET">
+        <form class="user-login-section" onsubmit="login(event); return false">
             <input type="text" class="login username" placeholder="Type in username">
             <input type="text" class="login password" placeholder="Type in password">
             <button type="submit">Login</button>
-            <a href="">Register</a>
+            <a href="user_register_page.html">Register</a>
         </form>
     </section>
   </body>

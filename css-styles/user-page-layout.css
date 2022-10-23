@@ -89,7 +89,7 @@
     
 }
 
-.user-login-section {
+.user-login-section, .user-register-section {
     display: grid;
     position: absolute;
     margin-top: 5em;    
