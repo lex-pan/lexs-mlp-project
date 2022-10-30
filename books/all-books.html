@@ -58,7 +58,7 @@
             </form>
           </div>
 
-          <div class="user-profile"><a href="../user/user.html"><p>User</p></a></div>
+          <button class="user-profile" onclick="toUserPage()"><p>User</p></button>
 
         </nav>
 
@@ -166,11 +166,12 @@
 
 
       <section id="all-movies-display">
-        <form class="book-submit" onsubmit="addToCollection(event); return false">
+        <form class="book-submit">
+            <h3 id="form-title"></h3>
             <button type="button" class="close-form">x</button>
             <div class="user-read-watch-status">
               <label>Reading Status:</label>
-              <select>
+              <select id="status">
                 <option selected hidden>Select Status</option>
                 <option value="completed">Completed</option>
                 <option value="reading">Reading</option>
@@ -181,8 +182,8 @@
 
             <div class="user-rating">
               <label>Rating:</label>
-              <select class="status">
-                <option selected hidden>Select rating</option>
+              <select id="rating">
+                <option selected hidden>Select Rating</option>
                 <option value="five">5 (Perfect)</option>
                 <option value="four">4 (Great)</option>
                 <option value="three">3 (Average)</option>
@@ -192,7 +193,7 @@
             </div>
 
             <textarea class="user-book-film-description" placeholder="thoughts on the book..."></textarea>
-            <button type="submit" class="user-selection-complete">Submit</button>
+            <button onclick="addToCollection(); return false" class="user-selection-complete">Submit</button>
                         
         </form>
       </section>

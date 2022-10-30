@@ -5,12 +5,19 @@ const authenticateUser = require('./authenticate-User');
 
 var users = {
     lexus: {
+        username: "lexus",
         password: '$2b$10$1GR.1Hjd3byzWsAHaYZvhOxqgIZjHT3u241fIGfphyz75qwqQlUKm',
         email: 'throwawayemail@gmail.com',
         userStatistics: {},
         listOfBooks: {},
         listOfFilms: {}
       }
+}
+
+var books = {
+    w0uHyh6mYdEC: {
+        bookName: ""
+    }
 }
 
 const app = express();
@@ -34,6 +41,7 @@ app.post('/register', async(req, res)=>{
         const hashedpassword = await bcrypt.hash(req.body.password, 10)
         const username = req.body.username
         users[username] = {
+            username: username,
             password: hashedpassword,
             email: req.body.email,
             userStatistics: {},
@@ -44,9 +52,22 @@ app.post('/register', async(req, res)=>{
         res.json({"entry": "successful"});
     } catch {
         res.json({"entry": "failure"})
-    }
+    }    
+})
+
+app.post('/add-to-collection', async(req, res)=>{
+    const submitInfo = req.body
+    const username = submitInfo.userInfo.username;
+    const user = users[username]
+    const userBooks = user.listOfBooks
+
+    userBooks[submitInfo.ID] = {
+            userRating: submitInfo.status,
+            userStatus: submitInfo.rating,
+            userComment: submitInfo.comment
+        }
     
-    
+    console.log(userBooks)
 })
 
 app.listen(5000);

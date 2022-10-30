@@ -36,7 +36,7 @@ function mbnSearch() {
         fetch("https://www.googleapis.com/books/v1/volumes?q=" + userInput + "&maxResults=39") //Contacts google api //
             .then(res => res.json())            // gets response and converts into json //
             .then(data => {                     
-                console.log(data)               
+                console.log(data);               
                 displaySearchResults(data);     // Calls function to display data //
             })
     }
@@ -49,7 +49,7 @@ function displaySearchResults(data) {
     let checkSearch = document.getElementById('all-movies-display')
     let booksFilmsAlreadyPresent = checkSearch.getElementsByClassName('media-display')
     while (booksFilmsAlreadyPresent.length > 0) {
-        booksFilmsAlreadyPresent[0].remove()
+        booksFilmsAlreadyPresent[0].remove();
     }
 
     for (i=0; i < data.items.length; i++){
@@ -69,21 +69,22 @@ function displaySearchResults(data) {
             dataImage.src = "website-images/Image-Not-Available.png";
         }
 
-
         let dataDescription = dataInfo.description;
         if (dataDescription == undefined) {
-            dataDescription = "No description"
+            dataDescription = "No description";
         }
 
-        const starPercentage = createStarRating(dataInfo.averageRating)
-        let averageRating = dataInfo.averageRating
+        const starPercentage = createStarRating(dataInfo.averageRating);
+        let averageRating = dataInfo.averageRating;
         if (averageRating == undefined) {
-            averageRating = 0
+            averageRating = 0;
         }
+
+        const bookID = data.items[i].id;
 
         dataDiv.innerHTML = // the data rating shows the percentage that the star should be covered//
         `
-        <h3 class="media-title">${dataTitle}</h3>
+        <h3 class="media-title" data-bookID=${bookID} >${dataTitle}</h3>
         <img class="book-or-movie-image" src=${dataImage}>
         <p class="media-description">${dataDescription}</p>
         <div class="rating-container">
@@ -93,7 +94,7 @@ function displaySearchResults(data) {
             <span>&nbsp&nbsp${averageRating}</span>
             <span class="item-adder-icon"></span>
         </div>
-        `
+        `;
         const displaySection = document.getElementById('all-movies-display'); // Creates section for displaying data//
         displaySection.appendChild(dataDiv); // adds the div into section for displaying data //
 
@@ -103,18 +104,19 @@ function displaySearchResults(data) {
             image: dataImage,
             description: dataDescription,
             rating: averageRating,
-            bookOrFilm: dataInfo.printType 
-        }
+            bookOrFilm: dataInfo.printType, 
+            ID: bookID
+        };
 
         // ()=> console.log(1)
-        dataDiv.getElementsByClassName("item-adder-icon")[0].addEventListener('click', () => userBookorFilmSubmitForm(allDataInfo))
+        dataDiv.getElementsByClassName("item-adder-icon")[0].addEventListener('click', () => userBookorFilmSubmitForm(allDataInfo));
     }
 }
 
 // Finds the width that matches up to a star and returns it
 function createStarRating(rating){
     if (rating == undefined) {
-        return 0
+        return 0;
     } else {
         const starsTotal = 5;
 
@@ -129,35 +131,50 @@ function createStarRating(rating){
         if (compare.includes(starPercentageRounded)) {
             starPercentageRounded = roundUp[starPercentageRounded];
         } 
-        return starPercentageRounded;
+        return starPercentageRounded
     }
 }
 
 function userBookorFilmSubmitForm(itemInfo) {
     if (checkIfUserLoggedIn() == "User logged in") {
-        const bookOrFilmForm = document.getElementsByClassName('book-submit')[0]
-        bookOrFilmForm.classList.add('sectionDisplay')
+        const booktitle = document.getElementById("form-title");
+        booktitle.innerHTML = "Review of: " + itemInfo.title;
+        booktitle.setAttribute('data', itemInfo.ID);
+
+        const bookOrFilmForm = document.getElementsByClassName('book-submit')[0];
+        bookOrFilmForm.classList.add('sectionDisplay');
+    } else {
+        alert("You must be signed in to bookmark");
     }
-    
 }
 
 function closeSubmitForm() {
-    visibileForm = document.getElementsByClassName('book-submit')[0]
-    visibileForm.classList.remove('sectionDisplay')
+    document.getElementsByClassName('book-submit')[0].classList.remove('sectionDisplay');
+    document.getElementById("rating").value = "Select Rating";
+    document.getElementById("status").value = "Select Status";
+    document.getElementsByClassName("user-book-film-description")[0].value = "";
+}
+
+function toUserPage() {
+    if (checkIfUserLoggedIn() == "User logged in") {
+        window.location.href = "../user/user.html";
+    } else {
+        window.location.href = "../user/user_login_page.html";
+    }
 }
 
 if (document.readyState == 'loading') {
-    document.addEventListener('DOMContentLoaded', ready)
+    document.addEventListener('DOMContentLoaded', ready);
 } else {
     ready()
 }
 
 function ready() {
-    const closeButton = document.getElementsByClassName('close-form')[0]
-    const userBookorFilmSubmitButton = document.getElementsByClassName('user-selection-complete')[0]
+    const closeButton = document.getElementsByClassName('close-form')[0];
+    const userBookorFilmSubmitButton = document.getElementsByClassName('user-selection-complete')[0];
 
-    closeButton.addEventListener('click', closeSubmitForm)
-    userBookorFilmSubmitButton.addEventListener('click', closeSubmitForm)
+    closeButton.addEventListener('click', closeSubmitForm);
+    userBookorFilmSubmitButton.addEventListener('click', closeSubmitForm);
 }
 
 

@@ -50,19 +50,36 @@ async function login(event){
 
 function loadUserInformation(token){
   sessionStorage.setItem("loggedIn", true)
-  sessionStorage.setItem("userInfo", token)
+  sessionStorage.setItem("userInfo", JSON.stringify(token))
   console.log(sessionStorage)
 } 
-var loggedIn = sessionStorage.getItem("loggedIn")
+let loggedIn = sessionStorage.getItem("loggedIn")
 
 function checkIfUserLoggedIn() {
   if (loggedIn == null) {
-    alert("You must be signed in to bookmark")
     return "Not logged in"
   } else {
     return "User logged in"
   }
 }
 
-async function addToCollection(event) {
+async function addToCollection() {
+  const bookID = document.getElementById("form-title").getAttribute("data");
+  const userNovelBookStatus = document.getElementById('status').value;
+  const userRating = document.getElementById('rating').value;
+  const userComment = document.getElementsByClassName('user-book-film-description')[0].value;
+  const user = JSON.parse(sessionStorage.getItem("userInfo"));
+  
+  const rawResponse = await fetch('http://localhost:5000/add-to-collection', {
+    method: 'POST',
+    headers: {
+      'Accept': 'application/json',
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({ID: bookID, status: userNovelBookStatus, rating: userRating, comment: userComment, userInfo: user})
+  });
+
+  closeSubmitForm()
+
+  alert("Successfully added")
 }
