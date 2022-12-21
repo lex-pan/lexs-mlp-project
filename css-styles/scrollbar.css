@@ -1,0 +1,13 @@
+/*  The path the scroll button follows */
+::-webkit-scrollbar {
+    width: 14px;
+}
+
+::-webkit-scrollbar-track {
+    background: rgb(245, 245, 245);
+}
+
+/* Scroll button */
+::-webkit-scrollbar-thumb {
+    background: rgb(0, 183, 255);
+}

@@ -1,0 +1,143 @@
+/*CSS Section
+- top-of-page is to make the top of the background color purple
+.- webpage-links is to stylize the top of the pages such as the color, type of font, and font size-->
+- book-or-movie-image is to default the size of the image of the movies/novels within the website-->
+*/
+
+/* "*" is a universal selector that applies these css styles to all elements in the page */
+
+/* CSS Style that will be applied to each and every single page*/
+
+* {
+  padding: 0; /* The amount of space around a element's content within the borders, 0 space in this example*/
+  margin: 0; /* The amount of space around a element's content outside of the borders, by default a page will have margin and leave white space*/
+  border: 0; /* The space between the padding and the margin */
+  outline: 0; /* A line drawn outside the border, size and colour */
+  vertical-align: baseline; /* Sets the vertical alignment of an image https://www.w3schools.com/cssref/pr_pos_vertical-align.asp */ 
+}
+
+/* Start of navigation area */
+
+.nav { /* Navigation area */
+  display: grid; /* Creates a grid for the navigation area*/
+  grid-template-columns: auto auto auto auto; /* Number of columns within the navigation bar*/
+  background-color: rgb(56, 15, 168); 
+  height: 3.7em; /* em is size relative to screen of window */
+}
+
+.My-Reads-Image { /* Logo of website */
+  padding: 0.6em; 
+  height: 2.5em;
+  width:  16em;
+}
+
+.main-nav {
+  display: flex; /* Keeps the dropdown items in a row */
+  padding: 1em;
+  text-align: center; /* centers the text, when nav bar is hovered */
+  margin-top: 0.2em;
+}
+
+.top-nav-bar {
+  border: 1px solid transparent;
+  padding-left: 2.5em;
+  padding-right: 2.5em;
+  padding-bottom: 1.2em;
+  padding-top: 1em;
+  color: rgb(246, 255, 0);
+  font-family: Georgia, 'Times New Roman', Times, serif;
+  font-size: 1em;
+}
+
+.sub-nav-list {
+  list-style-type: none; /* when a list is created, there will be a list symbol beside the item and this style type will remove the symbol*/
+  display: none; /* To keep the sub nav bar hidden */
+  position: relative; /* Useful because it helps with z-index */
+  margin-top: 1.3em;
+  z-index: 3;
+  border: 1px solid transparent;
+}
+
+.sub-nav-list li {
+  position: relative;
+  padding:10px;
+  z-index: 3;
+}
+
+.sub-nav-list a {
+  color: white;
+  display: block; /* Displays items on new lines  https://www.w3schools.com/cssref/tryit.asp?filename=trycss_display (link for different types of blocks with "hello world" as to what the blocks represent)*/
+  font-size: 1em;
+  color: rgb(246, 255, 0);
+}
+
+.top-nav-bar:hover{
+  background-color: rgb(74, 25, 211);
+}
+
+.main-nav div:hover .sub-nav-list{
+  display: block;
+  background-color: rgb(56, 15, 168)
+}
+
+.sub-nav-list li:hover {
+  background-color: rgb(74, 25, 211);
+}
+
+
+.search-bar {
+  margin: 0.8em; /* space outside the container */
+}
+
+.search-bar form {
+  display: flex; /* keeps the search bar tab and button together, otherwise the button will appear on the second line */
+}
+
+#search-bar {
+  text-align: left; 
+  background: white;
+  font-size: 1em;
+  padding-left: 0.3em;
+  font-family: Georgia, 'Times New Roman', Times, serif;
+  width: 70%;
+}
+
+.search-button {
+  color: white;
+  background-color: orange;
+  font-size: 1em;
+  font-family: Georgia, 'Times New Roman', Times, serif; /* font used for the search button */
+  cursor: pointer; /* When hovering the search button, shows hand on mouse*/
+  padding: 7px;
+}
+
+a {
+  color: inherit;
+}
+
+.user-profile {
+  display: flex;
+  justify-content: center;
+  border: 1px solid transparent;
+  padding-top: 1.4em;
+  height: 28%;
+  width: 90%;
+  font-family: Georgia, 'Times New Roman', Times, serif;
+  text-align: center;  
+  cursor: pointer;
+  background: none;
+
+}
+
+.user-profile p {
+  font-size: 1.4em;
+  font-family: Georgia, 'Times New Roman', Times, serif;
+  color: rgb(246, 255, 0);
+}
+
+.user-profile:hover{
+  border: 1px solid black;
+ background-color: rgb(74, 25, 211);
+}
+
+/* End of Navigation Area */
