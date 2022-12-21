@@ -20,6 +20,7 @@ async function register(event) {
     if (token["entry"] == "successful"){
       window.location.href = "../user/user_login_page.html";
     } else {
+      alert("Username already exists");
       window.location.href = "../user/user_register_page.html";
     }
 }
@@ -38,8 +39,10 @@ async function login(event){
   });
   
   const token = await rawResponse.json();
+  console.log(token)
 
   if (token == "failure") {
+    console.log("login failure")
     window.location.href = "../user/user_login_page.html"
   } else {
     console.log(token)

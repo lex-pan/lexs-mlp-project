@@ -51,7 +51,7 @@
 
 .sub-nav-list {
   list-style-type: none; /* when a list is created, there will be a list symbol beside the item and this style type will remove the symbol*/
-  visibility: hidden; /* To keep the sub nav bar hidden */
+  display: none; /* To keep the sub nav bar hidden */
   position: relative; /* Useful because it helps with z-index */
   margin-top: 1.3em;
   z-index: 3;
@@ -72,17 +72,15 @@
 }
 
 .top-nav-bar:hover{
-  border: 1px solid black;
   background-color: rgb(74, 25, 211);
 }
 
 .main-nav div:hover .sub-nav-list{
-  visibility: visible;
+  display: block;
   background-color: rgb(56, 15, 168)
 }
 
 .sub-nav-list li:hover {
-  border: 1px solid black;
   background-color: rgb(74, 25, 211);
 }
 

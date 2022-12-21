@@ -1,7 +1,12 @@
 const express = require('express');
-var cors = require('cors')
+const cors = require('cors')
 const bcrypt = require('bcrypt');
-const authenticateUser = require('./authenticate-User');
+//const get_database_info = require('./config');
+//const user_database = get_database_info.pool
+const app = express();
+app.use(cors())
+app.use(express.json());
+const userDatabase = require('./user_database');
 
 var users = {
     lexus: {
@@ -14,52 +19,44 @@ var users = {
       }
 }
 
-var books = {
-    w0uHyh6mYdEC: {
-        bookName: ""
-    }
-}
-
-const app = express();
-app.use(cors())
-app.use(express.json());
-
 app.post('/login', async(req, res)=>{
-    const username = req.body.username
-    const password = req.body.password
-    const verify = await authenticateUser(username, password, users)
+    const username = req.body.username;
+    const password = req.body.password;
+    const verify = await userDatabase.authenticateUser(username, password);
     if (verify == "Either the username or password is incorrect") {
         res.json("failure")
     } else {
-        res.json(users[username])
+        res.json(verify)
     } 
 })
 
 app.post('/register', async(req, res)=>{
-    console.log('got request')
-    try {
-        const hashedpassword = await bcrypt.hash(req.body.password, 10)
-        const username = req.body.username
-        users[username] = {
-            username: username,
-            password: hashedpassword,
-            email: req.body.email,
-            userStatistics: {},
-            listOfBooks: {},
-            listOfFilms: {}
+    console.log('got register request')
+    const hashedpassword = await bcrypt.hash(req.body.password, 10);
+    const username = req.body.username;
+    let email = req.body.email;
+    if (email == '') {
+        email = 'No Email Submitted';
+    }
+    checkAndAdd = await userDatabase.checkIfUserAlreadyExists(username)
+    if (checkAndAdd == "Valid Username") {
+        try {
+            userDatabase.addUserToDatabase(username, hashedpassword, email)
+            res.json({"entry": "successful"});
         }
-        console.log(users)
-        res.json({"entry": "successful"});
-    } catch {
-        res.json({"entry": "failure"})
-    }    
+        catch{
+            res.json({"entry": "failure"})
+        }
+    } else {
+        res.json({"entry": "Username already exists"});
+    }
 })
 
 app.post('/add-to-collection', async(req, res)=>{
-    const submitInfo = req.body
+    const submitInfo = req.body;
     const username = submitInfo.userInfo.username;
-    const user = users[username]
-    const userBooks = user.listOfBooks
+    const user = users[username];
+    const userBooks = user.listOfBooks;
 
     userBooks[submitInfo.ID] = {
             userRating: submitInfo.status,
@@ -67,10 +64,10 @@ app.post('/add-to-collection', async(req, res)=>{
             userComment: submitInfo.comment
         }
     
-    console.log(userBooks)
+    console.log(userBooks);
 })
 
 app.listen(5000);
-console.log("On port 5000")
+console.log("On port 5000");
 
 
