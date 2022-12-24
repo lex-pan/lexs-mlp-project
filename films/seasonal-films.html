@@ -6,7 +6,15 @@
     <!--Title of this webpage-->
     <title>My Reads</title>
     <!--Code used to apply css style to this page using the style.css section-->
-    <link rel="stylesheet" type="text/css" href="../styles.css">
+    <link rel="stylesheet" type="text/css" href="../css-styles/navigation.css">
+    <link rel="stylesheet" type="text/css" href="../css-styles/sub-nav-title-and-filter-area.css">
+    <link rel="stylesheet" type="text/css" href="../css-styles/display-content.css">
+    <link rel="stylesheet" type="text/css" href="../css-styles/scrollbar.css">
+    <script src="https://kit.fontawesome.com/6e3ad9090d.js" crossorigin="anonymous"></script>
+    <script src="../javascript-frontend/display_books.js"></script>
+    <script src="../javascript-frontend/click_dropdowns.js"></script>
+    <script src="../api/user.js"></script>
+    <script src="../api/book.js"></script>
   </head>
 
   <!-- This line is to make sure that links homepage, novels/movies/shows/graphic novels are on the same line --> 
@@ -20,35 +28,20 @@
           <div class="main-nav">
             
             <div>
-              <h class="top-nav-bar">Movies</h>
-              <br>
-              <br>
+              <h class="top-nav-bar">Films</h>
               <ul class="sub-nav-list">
-                <li><a href="seasonal_movies.html">Seasonal Movies</a></li>
-                <li><a href="all-movies.html">All Movies</a></li> 
-                <li><a href="novel_news_and_homepage.html">Movie News <br> and Homepage</a></li>
+                <li><a href="seasonal-films.html">Seasonal Films</a></li>
+                <li><a href="all-films.html">All Films</a></li> 
+                <li><a href="film-news-and-homepage.html">Movie News <br> and Homepage</a></li>
               </ul>
             </div>
 
             <div>
-              <h class="top-nav-bar">Comics</h>
-              <br>
-              <br>
+              <h class="top-nav-bar">Books</h>
               <ul class="sub-nav-list">
-                <li><a href="seasonal_novels.html">Seasonal Comics</a></li>
-                <li><a href="novels/all_novels.html">All Comics</a></li> 
-                <li><a href="novel_news_and_homepage.html">Comic News <br> and Homepage</a></li>
-              </ul>
-            </div>
-
-            <div>
-              <h class="top-nav-bar">Novels</h>
-              <br>
-              <br>
-              <ul class="sub-nav-list">
-                <li><a href="seasonal_novels.html">Seasonal Novels</a></li>
-                <li><a href="all_novels.html">All Novels</a></li> 
-                <li><a href="novel_news_and_homepage.html">Novel News <br> and Homepage</a></li>
+                <li><a href="../books/seasonal-books.html">Seasonal books</a></li>
+                <li><a href="../books/all-books.html">All Books</a></li> 
+                <li><a href="../books/book-news-and-homepage.html">Novel News <br> and Homepage</a></li>
               </ul>
             </div>
 
@@ -65,18 +58,146 @@
             </form>
           </div>
 
-          <div class="user-profile"><a href="../user/user.html"><p>User</p></a></div>
+          <button class="user-profile" onclick="toUserPage()"><p>User</p></button>
 
         </nav>
 
     </section>
+      <div class="sub-nav-title"><h2>Seasonal Films</h2></div>
+    </section>
 
-
-    <section class="sub-nav-title"><h2>Seasonal Movies</h2></section>
-
-    <section id="all-movies-display"></section>
-
-  </body>
+    <section class="filter-sort-search"> 
+        <div>
+            <input type="text" id="mbnSearchBar" placeholder="Search" onkeydown="mbnSearch()">
+        </div>
+        
+        <div>
+          <button class="filter-button"><h3>Sort</h3></button>
+          <ul class="types-of-filters">
+            <li><p>Sort by Popularity</p></li>
+            <li><p>Sort by Score</p></li>
+            <li><p>Sort by Alphabet</p></li>
+            <li><p>Sort by Title</p></li>
+          </ul>
   
+          <!-- <ul class="dates-seasonal-all-time">
+            <li><p>This week</p></li>
+            <li><p>This month</p></li>
+            <li><p>This season</p></li>
+            <li><p>All time</p></li>
+          </ul> -->
+        </div>
+        
+        <div class="dropdown">
+          <button class="filter-button"><h3>Genres And Themes</h3></button> <!--By genre, status of publication, year of release, country of origin-->
+          <ul class="genres-and-themes-filters">
+            <li><p>Action<p></li>
+            <li><p>Comedy<p></li>
+            <li><p>Drama<p></li>
+            <li><p>Fantasy<p></li>
+            <li><p>Horror<p></li>
+            <li><p>Mystery<p></li>
+            <li><p>Romance<p></li>
+            <li><p>Thriller<p></li>
+            <li><p>Fantasy<p></li>
+            <li><p>Reincarnation<p></li>
+            <li><p>Action<p></li>
+            <li><p>Comedy<p></li>
+            <li><p>Drama<p></li>
+            <li><p>Fantasy<p></li>
+            <li><p>Horror<p></li>
+            <li><p>Mystery<p></li>
+            <li><p>Romance<p></li>
+            <li><p>Thriller<p></li>
+            <li><p>Action<p></li>
+            <li><p>Comedy<p></li>
+            <li><p>Drama<p></li>
+            <li><p>Fantasy<p></li>
+            <li><p>Horror<p></li>
+            <li><p>Mystery<p></li>
+            <li><p>Romance<p></li>
+            <li><p>Thriller<p></li>
+            <li><p>Action<p></li>
+            <li><p>Comedy<p></li>
+            <li><p>Drama<p></li>
+            <li><p>Fantasy<p></li>
+            <li><p>Horror<p></li>
+            <li><p>Mystery<p></li>
+            <li><p>Romance<p></li>
+            <li><p>Thriller<p></li>
+            <li><p>Action<p></li>
+            <li><p>Comedy<p></li>
+            <li><p>Drama<p></li>
+            <li><p>Fantasy<p></li>
+            <li><p>Horror<p></li>
+            <li><p>Mystery<p></li>
+            <li><p>Romance<p></li>
+            <li><p>Thriller<p></li>
+            <li><p>Action<p></li>
+            <li><p>Comedy<p></li>
+            <li><p>Drama<p></li>
+            <li><p>Fantasy<p></li>
+            <li><p>Horror<p></li>
+            <li><p>Mystery<p></li>
+            <li><p>Romance<p></li>
+            <li><p>Thriller<p></li>
+          </ul>
+        </div> 
+  
+        <div class="dropdown">
+          <button class="filter-button"><h3 filter-button>Status of Publication</h3></button>
+          <ul class="types-of-filters">
+            <li><p>Ongoing</p></li>
+            <li><p>Finished</p></li>
+            <li><p>On Hiatus</p></li>
+            <li><p>Later</p></li>
+          </ul>
+        </div>
+  
+        <div class="dropdown">
+          <button class="filter-button"><h3>Year</h3></button>
+        </div>
+  
+        <div class="dropdown">
+          <button class="filter-button"><h3>Country of Origin</h3></button>
+        </div>
+  
+      </section>
 
-</html>
+      <section id="all-movies-display">
+        <form class="book-submit">
+            <h3 id="form-title"></h3>
+            <button type="button" class="close-form">x</button>
+            <div class="user-read-watch-status">
+              <label>Reading Status:</label>
+              <select id="status">
+                <option selected hidden>Select Status</option>
+                <option value="completed">Completed</option>
+                <option value="reading">Reading</option>
+                <option value="dropped">Dropped</option>
+                <option value="Paused">Reading</option>
+              </select>
+            </div>
+
+            <div class="user-rating">
+              <label>Rating:</label>
+              <select id="rating">
+                <option selected hidden>Select Rating</option>
+                <option value="five">5 (Perfect)</option>
+                <option value="four">4 (Great)</option>
+                <option value="three">3 (Average)</option>
+                <option value="two">2 (Poor)</option>
+                <option value="one">1 (horrible)</option>
+              </select>
+            </div>
+
+            <textarea class="user-book-film-description" placeholder="thoughts on the book..."></textarea>
+            <button onclick="addToCollection(); return false" class="user-selection-complete">Submit</button>
+                        
+        </form>
+      </section>
+  
+    </body>
+    
+  
+  </html>

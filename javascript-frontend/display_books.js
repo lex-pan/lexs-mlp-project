@@ -29,16 +29,14 @@ document.addEventListener('click', e => {
     }
 })
 
-function mbnSearch() {
+async function mbnSearch() {
     if (event.key === "Enter") { 
         let userInput = document.getElementById("mbnSearchBar").value; //Gets what user types in //
 
-        fetch("https://www.googleapis.com/books/v1/volumes?q=" + userInput + "&maxResults=39") //Contacts google api //
+        const bookResult = await fetch("https://www.googleapis.com/books/v1/volumes?q=" + userInput + "&maxResults=39") //Contacts google api //
             .then(res => res.json())            // gets response and converts into json //
-            .then(data => {                     
-                console.log(data);               
-                displaySearchResults(data);     // Calls function to display data //
-            })
+        displaySearchResults(bookResult);
+        return bookResult
     }
 }
 
