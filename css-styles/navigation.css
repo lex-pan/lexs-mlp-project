@@ -137,7 +137,8 @@ a {
 
 .user-profile:hover{
   border: 1px solid black;
- background-color: rgb(74, 25, 211);
+  background-color: rgb(74, 25, 211);
+  height: 92%;
 }
 
 /* End of Navigation Area */

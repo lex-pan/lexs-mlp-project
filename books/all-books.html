@@ -14,7 +14,7 @@
     <script src="../javascript-frontend/display_books.js"></script>
     <script src="../javascript-frontend/click_dropdowns.js"></script>
     <script src="../api/user.js"></script>
-
+    <script src="../api/book.js"></script>
   </head>
 
   <!-- This line is to make sure that links homepage, novels/movies/shows/graphic novels are on the same line --> 
@@ -68,7 +68,7 @@
 
     <section class="filter-sort-search"> 
         <div>
-            <input type="text" id="mbnSearchBar" placeholder="Search" onkeydown="mbnSearch()">
+            <input type="text" id="mbnSearchBar" placeholder="Search" onkeydown="addToDatabaseOfBooks(mbnSearch())">
         </div>
         
         <div>

@@ -11,8 +11,10 @@
     <link rel="stylesheet" type="text/css" href="../css-styles/display-content.css">
     <link rel="stylesheet" type="text/css" href="../css-styles/scrollbar.css">
     <script src="https://kit.fontawesome.com/6e3ad9090d.js" crossorigin="anonymous"></script>
-    <script src="../javascript-frontend/click_dropdowns.js"></script>
     <script src="../javascript-frontend/display_books.js"></script>
+    <script src="../javascript-frontend/click_dropdowns.js"></script>
+    <script src="../api/user.js"></script>
+    <script src="../api/book.js"></script>
   </head>
 
   <!-- This line is to make sure that links homepage, novels/movies/shows/graphic novels are on the same line --> 
@@ -56,7 +58,7 @@
             </form>
           </div>
 
-          <div class="user-profile"><a href="../user/user.html"><p>User</p></a></div>
+          <button class="user-profile" onclick="toUserPage()"><p>User</p></button>
 
         </nav>
 
@@ -162,7 +164,38 @@
   
       </section>
 
-      <section id="all-movies-display"></section>
+      <section id="all-movies-display">
+        <form class="book-submit">
+            <h3 id="form-title"></h3>
+            <button type="button" class="close-form">x</button>
+            <div class="user-read-watch-status">
+              <label>Reading Status:</label>
+              <select id="status">
+                <option selected hidden>Select Status</option>
+                <option value="completed">Completed</option>
+                <option value="reading">Reading</option>
+                <option value="dropped">Dropped</option>
+                <option value="Paused">Reading</option>
+              </select>
+            </div>
+
+            <div class="user-rating">
+              <label>Rating:</label>
+              <select id="rating">
+                <option selected hidden>Select Rating</option>
+                <option value="five">5 (Perfect)</option>
+                <option value="four">4 (Great)</option>
+                <option value="three">3 (Average)</option>
+                <option value="two">2 (Poor)</option>
+                <option value="one">1 (horrible)</option>
+              </select>
+            </div>
+
+            <textarea class="user-book-film-description" placeholder="thoughts on the book..."></textarea>
+            <button onclick="addToCollection(); return false" class="user-selection-complete">Submit</button>
+                        
+        </form>
+      </section>
   
     </body>
     

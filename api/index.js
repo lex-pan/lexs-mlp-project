@@ -7,17 +7,7 @@ const app = express();
 app.use(cors())
 app.use(express.json());
 const userDatabase = require('./user_database');
-
-var users = {
-    lexus: {
-        username: "lexus",
-        password: '$2b$10$1GR.1Hjd3byzWsAHaYZvhOxqgIZjHT3u241fIGfphyz75qwqQlUKm',
-        email: 'throwawayemail@gmail.com',
-        userStatistics: {},
-        listOfBooks: {},
-        listOfFilms: {}
-      }
-}
+const book_database = require('./book_database')
 
 app.post('/login', async(req, res)=>{
     const username = req.body.username;
@@ -53,18 +43,9 @@ app.post('/register', async(req, res)=>{
 })
 
 app.post('/add-to-collection', async(req, res)=>{
-    const submitInfo = req.body;
-    const username = submitInfo.userInfo.username;
-    const user = users[username];
-    const userBooks = user.listOfBooks;
-
-    userBooks[submitInfo.ID] = {
-            userRating: submitInfo.status,
-            userStatus: submitInfo.rating,
-            userComment: submitInfo.comment
-        }
-    
-    console.log(userBooks);
+    const bookData = req.body    
+    checkUniqueBook = await book_database.addBookToDatabase(bookData)
+    res.json("books has been checked")
 })
 
 app.listen(5000);
