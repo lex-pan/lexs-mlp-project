@@ -86,8 +86,8 @@ function displaySearchResults(data) {
         <img class="book-or-movie-image" src=${dataImage}>
         <p class="media-description">${dataDescription}</p>
         <div class="rating-container">
-            <div class="stars-outer">
-                <div class="stars-inner" style="width:${starPercentage}"></div>  
+            <div class="rating-outer">
+                <div class="rating-inner" style="width:${starPercentage}"></div>
             </div>
             <span>&nbsp&nbsp${averageRating}</span>
             <span class="item-adder-icon"></span>
@@ -107,6 +107,7 @@ function displaySearchResults(data) {
         };
 
         // ()=> console.log(1)
+        dataDiv.getElementsByClassName("media-title")[0].addEventListener('click', renderBookInfo);
         dataDiv.getElementsByClassName("item-adder-icon")[0].addEventListener('click', () => userBookorFilmSubmitForm(allDataInfo));
     }
 }
@@ -123,8 +124,8 @@ function createStarRating(rating){
     
         let starPercentageRounded = `${Math.round(starPercentage / 10) * 10}%`;
     
-        roundUp = {"30%":"28%" ,"70%":"72%", "90%":"93.5%"};
-        compare = ["30%", "70%", "90%"];
+        roundUp = {"10%":"0.85em" ,"30%":"2.9em", "50%":"4.9em", "70%":"6.9em", "90%":"8.9em"};
+        compare = ["10%", "30%", "50%", "70%", "90%"];
     
         if (compare.includes(starPercentageRounded)) {
             starPercentageRounded = roundUp[starPercentageRounded];
@@ -174,5 +175,6 @@ function ready() {
     closeButton.addEventListener('click', closeSubmitForm);
     userBookorFilmSubmitButton.addEventListener('click', closeSubmitForm);
 }
+
 
 
