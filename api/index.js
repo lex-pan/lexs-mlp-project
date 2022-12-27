@@ -48,6 +48,16 @@ app.post('/add-to-collection', async(req, res)=>{
     res.json("books has been checked")
 })
 
+app.post('/get-book-info', async(req, res)=>{
+    const bookTitle = req.body.bookTitle
+    checkUniqueBook = await book_database.queryBookInfoFromDB(bookTitle)
+    if (checkUniqueBook == undefined) {
+        res.json("Book does not exist in database")
+    } else {
+        res.json(checkUniqueBook)
+    }
+})
+
 app.listen(5000);
 console.log("On port 5000");
 

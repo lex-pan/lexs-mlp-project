@@ -30,7 +30,7 @@ const sampleBook = {
 }
 
 //const addBook = async () => {
-//    const x = await checkIfUniqueBook('Harry Potter and the Cursed Child');
+//    const x = await queryBookInfoFromDB('Harry Potter and the Cursed Child');
 //    console.log(x)
 //};
 
@@ -38,12 +38,11 @@ const sampleBook = {
 
 async function addBookToDatabase(bookData) {
     const uniqueBook = await checkIfUniqueBook(bookData.Title) 
-    console.log(uniqueBook)
     if (uniqueBook == "Unique Book") {
-        console.log("INSERT INTO books (book_title, book_authors, book_publisher, book_page_count, " + 
+        /*console.log("INSERT INTO books (book_title, book_authors, book_publisher, book_page_count, " + 
         "book_rating, book_image, book_description, book_rating_count)" +  " VALUES ('" + bookData.Title + "', '" 
         + bookData.Author + "', '"+ bookData.Publisher + "', '" + bookData.PageCount + "', '" + bookData.averageRating + "', '"
-        + bookData.Image + "', '" + bookData.Description + "', '" + bookData.RatingsCount + "');")
+        + bookData.Image + "', '" + bookData.Description + "', '" + bookData.RatingsCount + "');")*/
         book_database.query("INSERT INTO books (book_title, book_authors, book_publisher, book_page_count, " + 
         "book_rating, book_image, book_description, book_rating_count)" +  " VALUES ('" + bookData.Title + "', '" 
         + bookData.Author + "', '"+ bookData.Publisher + "', '" + bookData.PageCount + "', '" + bookData.averageRating + "', '"
@@ -51,8 +50,17 @@ async function addBookToDatabase(bookData) {
     }    
 }
 
+async function queryBookInfoFromDB(bookTitle) {
+    try {
+        const bookInfo = await book_database.query("SELECT * FROM books WHERE book_title = '" + bookTitle + "';");
+        return bookInfo.rows[0]
+    } catch {
+        console.log("Database query has failed");
+    }
+}
 
 module.exports = {
     checkIfUniqueBook,
-    addBookToDatabase
+    addBookToDatabase,
+    queryBookInfoFromDB
 }
