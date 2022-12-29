@@ -17,6 +17,7 @@
 }
 
 .user-section-button h3{
+    cursor: pointer;
     background-color: white;
     text-align: center;
     border: 1px solid rgb(0, 153, 255);
@@ -45,6 +46,10 @@
 }
 
 .user-section-button.sectionDropdown + .user-and-profile{
+    visibility: visible;
+}
+
+.user-section-button.sectionDropdown + .user-list{
     visibility: visible;
 }
 
@@ -109,4 +114,19 @@
     height: 3em;
     margin: 0.4em;
     padding-left: 0.5em;
+}
+
+.user-list {
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    display: grid;
+    visibility: hidden;
+    grid-template-columns: 61em;
+    margin-top: 1em;
+    left: 50%;
+    transform: translate(-50%, 0);
+    z-index: -1;
+    border: 1px solid rgb(0, 153, 255);
+    padding: 1.4em;
 }

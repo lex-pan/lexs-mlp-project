@@ -16,7 +16,6 @@ async function register(event) {
 
     const token = await rawResponse.json();
 
-    console.log(token);
     if (token["entry"] == "successful"){
       window.location.href = "../user/user_login_page.html";
     } else {
@@ -39,21 +38,19 @@ async function login(event){
   });
   
   const token = await rawResponse.json();
-  console.log(token)
 
   if (token == "failure") {
     console.log("login failure")
     window.location.href = "../user/user_login_page.html"
   } else {
-    console.log(token)
-    loadUserInformation(token)
+    loadUserInformation(username)
     window.location.href = "../index.html"
   }
 }
 
-function loadUserInformation(token){
+function loadUserInformation(username){
   sessionStorage.setItem("loggedIn", true)
-  sessionStorage.setItem("userInfo", JSON.stringify(token))
+  sessionStorage.setItem("username", username)
   console.log(sessionStorage)
 } 
 let loggedIn = sessionStorage.getItem("loggedIn")
@@ -66,23 +63,39 @@ function checkIfUserLoggedIn() {
   }
 }
 
-async function addToCollection() {
-  const bookID = document.getElementById("form-title").getAttribute("data");
+async function addToUserBookCollection() {
+  const bookName = document.getElementById("form-title").innerHTML;
   const userNovelBookStatus = document.getElementById('status').value;
   const userRating = document.getElementById('rating').value;
   const userComment = document.getElementsByClassName('user-book-film-description')[0].value;
-  const user = JSON.parse(sessionStorage.getItem("userInfo"));
+  const username = sessionStorage.getItem("username");
   
-  const rawResponse = await fetch('http://localhost:5000/add-to-collection', {
+  const rawResponse = await fetch('http://localhost:5000/add-to-user-book-collection', {
     method: 'POST',
     headers: {
       'Accept': 'application/json',
       'Content-Type': 'application/json'
     },
-    body: JSON.stringify({ID: bookID, status: userNovelBookStatus, rating: userRating, comment: userComment, userInfo: user})
+    body: JSON.stringify({name:bookName, status: userNovelBookStatus, rating: userRating, comment: userComment, username: username})
   });
-
+  
+  const token = await rawResponse.json()
+  alert(token)
   closeSubmitForm()
-
-  alert("Successfully added")
 }
+
+async function removeBookFromCollection() {
+  let bookTitle = document.getElementById("remove-book-title").innerHTML
+  bookTitle = bookTitle.slice(8)
+  const username = sessionStorage.getItem("username");
+
+  const rawResponse = await fetch(`http://localhost:5000/remove-from-user-book-collection/${username}/${bookTitle}`, {
+    method: 'DELETE',
+  })
+
+  const token = await rawResponse.json()
+  alert(token)
+  closeRemoveBookForm()
+}
+
+
