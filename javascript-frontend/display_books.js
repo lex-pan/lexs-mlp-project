@@ -32,8 +32,9 @@ document.addEventListener('click', e => {
 async function mbnSearch() {
     if (event.key === "Enter") { 
         let userInput = document.getElementById("mbnSearchBar").value; //Gets what user types in //
+        //let userPageSearch = document.getElementsByClassName("page-number");
 
-        const bookResult = await fetch("https://www.googleapis.com/books/v1/volumes?q=" + userInput + "&maxResults=39") //Contacts google api //
+        const bookResult = await fetch(`https://www.googleapis.com/books/v1/volumes?q=${userInput}&maxResults=39`) //Contacts google api //
             .then(res => res.json())            // gets response and converts into json //
         displaySearchResults(bookResult);
         return bookResult
@@ -91,24 +92,16 @@ function displaySearchResults(data) {
             </div>
             <span>&nbsp&nbsp${averageRating}</span>
             <span class="item-adder-icon"></span>
+            <span class="item-remover-icon"></span>
         </div>
         `;
         const displaySection = document.getElementById('all-movies-display'); // Creates section for displaying data//
         displaySection.appendChild(dataDiv); // adds the div into section for displaying data //
 
-        //Information is used if user wants to add the book data to their library
-        let allDataInfo = {
-            title: dataTitle,
-            image: dataImage,
-            description: dataDescription,
-            rating: averageRating,
-            bookOrFilm: dataInfo.printType, 
-            ID: bookID
-        };
-
         // ()=> console.log(1)
         dataDiv.getElementsByClassName("media-title")[0].addEventListener('click', renderBookInfo);
-        dataDiv.getElementsByClassName("item-adder-icon")[0].addEventListener('click', () => userBookorFilmSubmitForm(allDataInfo));
+        dataDiv.getElementsByClassName("item-adder-icon")[0].addEventListener('click', () => userBookorFilmSubmitForm(dataTitle));
+        dataDiv.getElementsByClassName("item-remover-icon")[0].addEventListener('click', () => bookFilmremoveForm(dataTitle));
     }
 }
 
@@ -134,12 +127,102 @@ function createStarRating(rating){
     }
 }
 
-function userBookorFilmSubmitForm(itemInfo) {
+function displaySingleBook(bookInfo) {
+    let hideFilterButtons = document.getElementsByClassName("filter-sort-search")[0];
+    hideFilterButtons.style.display = "none";
+
+    let hideBooks = document.getElementById("all-movies-display");
+    hideBooks.style.display = "none";
+
+    let bookTitlePosition = document.getElementById("front-of-site");
+    bookTitlePosition.innerHTML = bookInfo.book_title;
+    let bookPlacementPosition = document.getElementsByClassName('book-profile')[0];
+    bookPlacementPosition.style.display = "grid";
+    bookPlacementPosition.innerHTML =        
+    `
+      <p class="back-arrow"></p>
+      <div class="book-overview">
+        <button class="book-section-button sectionDropdown"><h3>Overview</h3></button>
+        <div class="book-display">
+          <img class="book-render-image" src="${bookInfo.book_image}">
+          <div class="book-render-info">
+            <div class="website-read-stats">
+              <p>Average Rating: ${bookInfo.book_rating}</p> 
+              <p>members: ${bookInfo.book_rating_count}</p>
+              <button class="add-to-collection-button"><h3>Add to collection</h3></button>
+            </div>
+            <div class="book-stats">
+              <p>Book Authors: ${bookInfo.book_authors}</p>
+              <p>Book Page Count: ${bookInfo.book_page_count}</p>
+              <p>Publish Date: ${bookInfo.book_publish_date}</p>
+              <p>Book Pseudonyms:</p> 
+            </div>
+          </div> 
+          <textarea class="book-render-description" readonly>${bookInfo.book_description}</textarea> 
+        </div>
+
+      </div>
+      <button class="book-section-button"><h3>Characters</h3></button>
+      <button class="book-section-button"><h3>Book Information</h3></button>
+      <button class="book-section-button"><h3>Book Statistics</h3></button>
+    `;
+
+
+    if (document.readyState == 'loading') {
+        document.addEventListener('DOMContentLoaded', activate_book_profile_buttons);
+    } else {
+        activate_book_profile_buttons();
+    }
+}
+
+function activate_book_profile_buttons(){
+    const bookSectionButtons = document.getElementsByClassName("book-section-button");  
+    for (let i = 0; i < bookSectionButtons.length; i++) {
+        let button = bookSectionButtons[i];
+        button.addEventListener("click", applyShowFunction);
+    }
+
+    function applyShowFunction(event) {
+
+        // when the user clicks a new button all previous sections become hidden
+        // and the section that is clicked is shown using the 
+        // sectionDropdown class that gives the section clicked visibility
+        let currentlyActive = document.querySelectorAll('button.book-section-button.sectionDropdown');
+        for (let i = 0; i < currentlyActive.length; i++) {
+            currentlyActive[i].classList.remove("sectionDropdown");
+        }
+
+        // Displays the buttons
+        let getGiveActive = event.target.closest("button.book-section-button");
+        getGiveActive.classList.toggle('sectionDropdown');
+    }
+    const arrowButton = document.getElementsByClassName("back-arrow")[0];
+    arrowButton.addEventListener('click', backToBookSearchResults);
+
+    const collectionButton = document.getElementsByClassName("add-to-collection-button")[0]
+    const titleOfBook = document.getElementById("front-of-site").innerHTML
+
+    collectionButton.addEventListener('click', () => userBookorFilmSubmitForm(titleOfBook))
+}
+
+function backToBookSearchResults() {
+    let bookTitlePosition = document.getElementById("front-of-site");
+    bookTitlePosition.innerHTML = "All Books";
+
+    let bookPlacementPosition = document.getElementsByClassName('book-profile')[0];
+    bookPlacementPosition.style.display = "none";
+
+    let showFilterButtons = document.getElementsByClassName("filter-sort-search")[0];
+    showFilterButtons.style.display = "grid";
+
+    let showBooks = document.getElementById("all-movies-display");
+    showBooks.style.display = "grid";
+}
+
+function userBookorFilmSubmitForm(itemTitle) {
     if (checkIfUserLoggedIn() == "User logged in") {
         const booktitle = document.getElementById("form-title");
-        booktitle.innerHTML = "Review of: " + itemInfo.title;
-        booktitle.setAttribute('data', itemInfo.ID);
-
+        booktitle.innerHTML = itemTitle;
         const bookOrFilmForm = document.getElementsByClassName('book-submit')[0];
         bookOrFilmForm.classList.add('sectionDisplay');
     } else {
@@ -149,8 +232,8 @@ function userBookorFilmSubmitForm(itemInfo) {
 
 function closeSubmitForm() {
     document.getElementsByClassName('book-submit')[0].classList.remove('sectionDisplay');
-    document.getElementById("rating").value = "Select Rating";
-    document.getElementById("status").value = "Select Status";
+    document.getElementById("rating").selected = "Select Rating";
+    document.getElementById("status").selected = "Select Status";
     document.getElementsByClassName("user-book-film-description")[0].value = "";
 }
 
@@ -162,6 +245,19 @@ function toUserPage() {
     }
 }
 
+function bookFilmremoveForm(title) {
+    const bookTitle = document.getElementById("remove-book-title")
+    bookTitle.innerHTML = `Remove: ${title}`
+
+    const removeBookForm = document.getElementById('remove-book-form')
+    removeBookForm.classList.add('sectionDisplay');
+}
+
+function closeRemoveBookForm() {
+    const removebook = document.getElementById('remove-book-form')
+    removebook.classList.remove('sectionDisplay');
+}
+
 if (document.readyState == 'loading') {
     document.addEventListener('DOMContentLoaded', ready);
 } else {
@@ -169,10 +265,13 @@ if (document.readyState == 'loading') {
 }
 
 function ready() {
-    const closeButton = document.getElementsByClassName('close-form')[0];
-    const userBookorFilmSubmitButton = document.getElementsByClassName('user-selection-complete')[0];
+    const closeBookAddButton = document.getElementsByClassName('close-add-book-form')[0];
+    closeBookAddButton.addEventListener('click', closeSubmitForm);
 
-    closeButton.addEventListener('click', closeSubmitForm);
+    const removeBookFormButton = document.getElementsByClassName('close-remove-form')[0];
+    removeBookFormButton.addEventListener('click', closeRemoveBookForm)
+
+    const userBookorFilmSubmitButton = document.getElementsByClassName('user-selection-complete')[0];
     userBookorFilmSubmitButton.addEventListener('click', closeSubmitForm);
 }
 

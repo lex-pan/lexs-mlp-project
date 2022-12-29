@@ -13,7 +13,6 @@
     <link rel="stylesheet" type="text/css" href="../css-styles/scrollbar.css">
     <script src="../javascript-frontend/display_books.js"></script>
     <script src="../javascript-frontend/click_dropdowns.js"></script>
-    <script src="../javascript-frontend/render_book_or_image_profile.js"></script>
     <script src="../api/user.js"></script>
     <script src="../api/book.js"></script>
   </head>
@@ -169,37 +168,44 @@
 
 
       <section id="all-movies-display">
-        <form class="book-submit">
-            <h3 id="form-title"></h3>
-            <button type="button" class="close-form">x</button>
-            <div class="user-read-watch-status">
-              <label>Reading Status:</label>
-              <select id="status">
-                <option selected hidden>Select Status</option>
-                <option value="completed">Completed</option>
-                <option value="reading">Reading</option>
-                <option value="dropped">Dropped</option>
-                <option value="Paused">Reading</option>
-              </select>
-            </div>
-
-            <div class="user-rating">
-              <label>Rating:</label>
-              <select id="rating">
-                <option selected hidden>Select Rating</option>
-                <option value="five">5 (Perfect)</option>
-                <option value="four">4 (Great)</option>
-                <option value="three">3 (Average)</option>
-                <option value="two">2 (Poor)</option>
-                <option value="one">1 (horrible)</option>
-              </select>
-            </div>
-
-            <textarea class="user-book-film-description" placeholder="thoughts on the book..."></textarea>
-            <button onclick="addToCollection(); return false" class="user-selection-complete">Submit</button>
-                        
-        </form>
+        
       </section>
+
+      <form class="book-submit">
+        <h3 id="form-title"></h3>
+        <button type="button" class="close-add-book-form">x</button>
+        <div class="user-read-watch-status">
+          <label>Reading Status:</label>
+          <select id="status" required>
+            <option selected hidden>&nbspSelect Status</option>
+            <option value="completed"> &nbsp Completed</option>
+            <option value="reading">&nbsp Reading</option>
+            <option value="Paused">&nbsp Plan to read</option>
+            <option value="dropped">&nbsp Dropped</option>
+          </select>
+        </div>
+
+        <div class="user-rating">
+          <label>Rating:</label>
+          <select id="rating">
+            <option selected hidden>&nbsp Select Rating</option>
+            <option value="five">&nbsp 5 (Perfect)</option>
+            <option value="four">&nbsp 4 (Great)</option>
+            <option value="three">&nbsp 3 (Average)</option>
+            <option value="two">&nbsp 2 (Poor)</option>
+            <option value="one">&nbsp 1 (horrible)</option>
+          </select>
+        </div>
+
+        <textarea class="user-book-film-description" placeholder="thoughts on the book..."></textarea>
+        <button onclick="addToUserBookCollection(); return false" class="user-selection-complete"><h3>Submit</h3></button>
+                    
+    </form>
+
+    <div id="remove-book-form">
+      <button class="remove-book-button" onclick="removeBookFromCollection()"><h3 id="remove-book-title"></h3></button>
+      <button class="close-remove-form">x</button>
+    </div>
   
     </body>
     

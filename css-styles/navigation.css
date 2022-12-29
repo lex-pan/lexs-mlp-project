@@ -59,6 +59,7 @@
 }
 
 .sub-nav-list li {
+  cursor: pointer;
   position: relative;
   padding:10px;
   z-index: 3;
