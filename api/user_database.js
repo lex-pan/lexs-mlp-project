@@ -56,6 +56,7 @@ async function checkIfUpdate(bookName, username) {
 
 async function insertToUserBookDB(bookName, userBookStatus, userRating, username, userComment) {
     const typeOfEntry = await checkIfUpdate(bookName, username)
+    console.log(typeOfEntry)
     if (typeOfEntry == "Book does not exist") {
         try {
             user_database.query(`INSERT INTO users_and_books (book_name, username, user_rating, user_comment, user_book_status) 
@@ -95,12 +96,19 @@ async function delete_book_from_uab_db(username, bookName) {
     }
 }
 
+async function get_books_from_uab_db(username) {
+    const books = await user_database.query(`SELECT book_title, book_authors, book_publisher, book_page_count, user_rating, book_image, book_description, user_comment, user_book_status, book_publish_date 
+                                             FROM users_and_books INNER JOIN books ON book_title = book_name 
+                                             WHERE username = '${username}';`);
+    console.log(books.rows)
+    return books.rows
+}
 
 // checkIfUserAlreadyExists('lexia').then( x=> console.log(`the user exists: ${x}`));
 // console.log(checkIfUserAlreadyExists('lexia'));
 
 //(async () => {
-//    const x = await insertToUserBookDB("Harry Potter", "Completed", "5 (Ecellent)", "lexia", "Greatest book possible");
+//    const x = await get_books_from_uab_db("lexia");
 //    console.log(x)
 //})();
 
@@ -111,6 +119,7 @@ module.exports = {
     addUserToDatabase,
     insertToUserBookDB,
     checkIfUpdate,
-    delete_book_from_uab_db
+    delete_book_from_uab_db,
+    get_books_from_uab_db
 }
 
