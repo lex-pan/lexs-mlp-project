@@ -117,16 +117,39 @@
 }
 
 .user-list {
-    justify-content: center;
-    align-items: center;
     position: absolute;
     display: grid;
     visibility: hidden;
-    grid-template-columns: 61em;
+    width: 61em;
     margin-top: 1em;
     left: 50%;
     transform: translate(-50%, 0);
     z-index: -1;
     border: 1px solid rgb(0, 153, 255);
     padding: 1.4em;
+}
+
+.user-list a{
+    display: grid;
+    align-items: center;
+    justify-content: center;
+}
+
+.display-user-books {
+    height: 17em;
+    width: 13em;
+}
+
+.user-book-status {
+    color: rgb(0, 153, 255);
+    margin: 1em;
+    margin-left: 3em;
+}
+
+.completed, .reading, .plan-to-read, .dropped {
+    display: grid;
+    justify-content: center;
+    align-items: center;
+    grid-template-columns: repeat(auto-fill, 14em);
+    grid-auto-rows: minmax(18em, 18em); /* Makes sure that the height of the head of the display stays the same when the navigations for lists pop up and when window is resized*/
 }

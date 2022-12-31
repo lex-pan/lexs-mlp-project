@@ -9,6 +9,7 @@
 }
 
 .book-section-button {
+  cursor: pointer;
   margin-top: 1em;
   margin-left: 0.4em;
   margin-right: 0.4em;
@@ -52,7 +53,6 @@
 }
 
 .website-read-stats {
-  border: 1px solid rgb(0, 153, 255);
   margin-right: 1.2em;
   display: grid;
   align-items: center;
@@ -69,7 +69,8 @@
   width: 14em;
 }
 
-.add-to-collection-button {
+.add-to-collection-button, .remove-from-collection-button{
+  cursor: pointer;
   padding: 0.6em;
   border: 1px solid rgb(0, 153, 255);
   color: rgb(0, 153, 255);
@@ -77,14 +78,19 @@
   font-size: 13px;
 }
 
-.add-to-collection-button:hover {
+.add-to-collection-button:hover, .remove-from-collection-button:hover {
   background-color: rgb(0, 153, 255);
   color: white  ;
+}
+
+.book-stats {
+  display: grid;
 }
 
 .book-stats p{
   padding: 0.6em;
   border: 1px solid rgb(0, 153, 255);
+  margin: 0.3em;
 }
 
 .book-render-description {
@@ -99,6 +105,7 @@
 }
 
 .back-arrow {
+  cursor: pointer;
   text-align: center;
   border: 1px solid rgb(0, 153, 255);
   background-color: white;

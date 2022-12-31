@@ -68,7 +68,7 @@
 
     <section class="filter-sort-search"> 
         <div>
-            <input type="text" id="mbnSearchBar" placeholder="Search" onkeydown="addToDatabaseOfBooks(mbnSearch())">
+            <input type="text" id="mbnSearchBar" onkeydown="addToDatabaseOfBooks(mbnSearch(1))" placeholder="Search">
         </div>
         
         <div>
@@ -166,9 +166,29 @@
 
       <section class="book-profile"></section>
 
+      <section class="pagination">
+        <button class="pagination-page-numbers previous">&laquo&nbspPrev</button>
+        <button class="pagination-page-numbers lowest-number">1</button>
+        <button class="pagination-page-numbers">2</button>
+        <button class="pagination-page-numbers">3</button>
+        <button class="pagination-page-numbers">4</button>
+        <button class="pagination-page-numbers">5</button>
+        <button class="pagination-page-numbers">6</button>
+        <button class="pagination-page-numbers next">Next&nbsp&raquo</button> 
+      </section>
 
-      <section id="all-movies-display">
-        
+
+      <section id="all-movies-display"></section>
+
+      <section class="pagination">
+        <button class="pagination-page-numbers previous">&laquo&nbspPrev</button>
+        <button class="pagination-page-numbers lowest-number">1</button>
+        <button class="pagination-page-numbers">2</button>
+        <button class="pagination-page-numbers">3</button>
+        <button class="pagination-page-numbers">4</button>
+        <button class="pagination-page-numbers">5</button>
+        <button class="pagination-page-numbers">6</button>
+        <button class="pagination-page-numbers next">Next&nbsp&raquo</button> 
       </section>
 
       <form class="book-submit">
@@ -178,10 +198,10 @@
           <label>Reading Status:</label>
           <select id="status" required>
             <option selected hidden>&nbspSelect Status</option>
-            <option value="completed"> &nbsp Completed</option>
-            <option value="reading">&nbsp Reading</option>
-            <option value="Paused">&nbsp Plan to read</option>
-            <option value="dropped">&nbsp Dropped</option>
+            <option value="Completed"> &nbsp Completed</option>
+            <option value="Reading">&nbsp Reading</option>
+            <option value="Plan to read">&nbsp Plan to read</option>
+            <option value="Dropped">&nbsp Dropped</option>
           </select>
         </div>
 
@@ -198,8 +218,8 @@
         </div>
 
         <textarea class="user-book-film-description" placeholder="thoughts on the book..."></textarea>
-        <button onclick="addToUserBookCollection(); return false" class="user-selection-complete"><h3>Submit</h3></button>
-                    
+        <button onclick="addToUserBookCollection(); return false"  class="user-selection-complete"><h3>Submit</h3></button>
+
     </form>
 
     <div id="remove-book-form">

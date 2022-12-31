@@ -15,7 +15,7 @@ function ready() {
         button.addEventListener("click", applyShowFunction)
     }
 
-    function applyShowFunction(event) {
+    function applyShowFunction() {
 
         // when the user clicks a new button all previous sections become hidden
         // and the section that is clicked is shown using the 
