@@ -10,11 +10,16 @@
     <link rel="stylesheet" type="text/css" href="../css-styles/sub-nav-title-and-filter-area.css">
     <link rel="stylesheet" type="text/css" href="../css-styles/scrollbar.css">
     <link rel="stylesheet" type="text/css" href="../css-styles/user-page-layout.css">
+    <link rel="stylesheet" type="text/css" href="../css-styles/individual-book-layout.css">
+    <link rel="stylesheet" type="text/css" href="../css-styles/display-content.css">
     <script src="../javascript-frontend/click_dropdowns.js"></script>
+    <script src="../javascript-frontend/display_books.js"></script>
+
+    <script src="../api/user.js"></script>
   </head>
 
   <!-- This line is to make sure that links homepage, novels/movies/shows/graphic novels are on the same line --> 
-  <body>
+  <body id="body">
     <section>
       <nav class="nav">
         <!--Image to get to homepage-->
@@ -58,9 +63,11 @@
 
       </nav>
     </section>
+    <section class="sub-nav-title"><h2 id="front-of-site">User Profile</h2></section>
 
+
+    <section class="book-profile"></section>
     <section class="-user-">
-      <div class="sub-nav-title"><h2>User Profile</h2></div>
       <div class="user-sections">
 
         <div class="user-profile-section">
@@ -85,20 +92,31 @@
         <div class="user-profile-section">
           <button class="user-section-button"><h3>Film List</h3></button>
           <div class="user-list">
-            <h3>Completed</h3>
-            <h3>Watching</h3>
-            <h3>Plan to Watch</h3>
-            <h3>Dropped</h3>
+            <h3 class="user-book-status">Completed</h3>
+            <div class="completed">
+              <a><img class="display-user-books" src="/images/archeon-eon-art.jpg"></a>
+              <a><img class="display-user-books" src="/images/archeon-eon-art.jpg"></a>
+            </div>
+            <h3 class="user-book-status">Watching</h3>
+            <div class="reading"></div>
+            <h3 class="user-book-status">Plan to Watch</h3>
+            <div class="plan-to-read"></div>
+            <h3 class="user-book-status">Dropped</h3>
+            <div class="dropped"></div>
           </div>
         </div>
  
         <div class="user-profile-section">
-          <button class="user-section-button"><h3>Book List</h3></button>
+          <button class="user-section-button" onclick="getUserBooks()"><h3>Book List</h3></button>
           <div class="user-list">
-            <h3>Completed</h3>
-            <h3>Reading</h3>
-            <h3>Plan to Read</h3>
-            <h3>Dropped</h3>
+            <h3 class="user-book-status">Completed</h3>
+            <div class="completed"></div>
+            <h3 class="user-book-status">Reading</h3>
+            <div class="reading"></div>
+            <h3 class="user-book-status">Plan to read</h3>
+            <div class="plan-to-read"></div>
+            <h3 class="user-book-status">Dropped</h3>
+            <div class="dropped"></div>
           </div>
         </div>
 
@@ -111,6 +129,41 @@
       </div>
       <div class="user-activity"></div>
     </section>
+
+    <form class="book-submit">
+      <h3 id="form-title"></h3>
+      <button type="button" class="close-add-book-form">x</button>
+      <div class="user-read-watch-status">
+        <label>Reading Status:</label>
+        <select id="status" required>
+          <option selected hidden>&nbspSelect Status</option>
+          <option value="Completed"> &nbsp Completed</option>
+          <option value="Reading">&nbsp Reading</option>
+          <option value="Plan to read">&nbsp Plan to read</option>
+          <option value="Dropped">&nbsp Dropped</option>
+        </select>
+      </div>
+
+      <div class="user-rating">
+        <label>Rating:</label>
+        <select id="rating">
+          <option selected hidden>&nbsp Select Rating</option>
+          <option value="five">&nbsp 5 (Perfect)</option>
+          <option value="four">&nbsp 4 (Great)</option>
+          <option value="three">&nbsp 3 (Average)</option>
+          <option value="two">&nbsp 2 (Poor)</option>
+          <option value="one">&nbsp 1 (horrible)</option>
+        </select>
+      </div>
+
+      <textarea class="user-book-film-description" placeholder="thoughts on the book..."></textarea>
+      <button onclick="addToUserBookCollection(); return false"  class="user-selection-complete"><h3>Submit</h3></button>
+  </form>
+
+  <div id="remove-book-form">
+    <button class="remove-book-button" onclick="removeBookFromCollection()"><h3 id="remove-book-title"></h3></button>
+    <button class="close-remove-form">x</button>
+  </div>
 
   </body>
     

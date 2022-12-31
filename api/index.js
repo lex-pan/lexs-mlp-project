@@ -61,7 +61,7 @@ app.post('/add-to-book-database', async(req, res)=>{
 
 app.get('/get-book-info', async(req, res)=>{
     const bookUrl = url.parse(req.url, true).query;
-    bookTitle = bookUrl["booktitle"]
+    bookTitle = bookUrl["booktitle"];
     console.log(bookTitle)
     checkUniqueBook = await book_database.queryBookInfoFromDB(bookTitle)
     if (checkUniqueBook == undefined) {
@@ -76,6 +76,15 @@ app.delete('/remove-from-user-book-collection/:username/:bookname', async(req, r
     const bookName = req.params.bookname;
     const result = await userDatabase.delete_book_from_uab_db(username, bookName)
     res.json(result)
+})
+
+app.get('/get-user-books', async(req, res) => {
+    const getUserBooksUrl = url.parse(req.url, true).query;
+    console.log(getUserBooksUrl)
+    const username = getUserBooksUrl["username"];
+    const getUserBooks = await userDatabase.get_books_from_uab_db(username)
+    console.log(getUserBooks)
+    res.json(getUserBooks)
 })
 
 app.listen(5000);

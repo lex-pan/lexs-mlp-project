@@ -23,6 +23,7 @@
   grid-template-columns: auto auto auto auto; /* Number of columns within the navigation bar*/
   background-color: rgb(56, 15, 168); 
   height: 3.7em; /* em is size relative to screen of window */
+  width: 100%;
 }
 
 .My-Reads-Image { /* Logo of website */

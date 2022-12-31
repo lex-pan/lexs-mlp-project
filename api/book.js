@@ -50,6 +50,7 @@ async function addToDatabaseOfBooks(data) {
                 body: JSON.stringify({Title: bookTitle, Author: bookAuthor, Publisher: bookPublisher, 
                 PublishDate: bookPublishDate, PageCount:bookPageCount, RatingsCount:bookRatingsCount, 
                 Image:bookImage, Description: bookDescription, averageRating: averageRating, publishDate:bookPublishDate})
+
             });
         }
     }
@@ -58,7 +59,6 @@ async function addToDatabaseOfBooks(data) {
 async function renderBookInfo() {
     const getBookTitle = event.target.closest('h3').innerHTML;
     let bookUrl = 'http://localhost:5000/get-book-info?booktitle=' + `${getBookTitle}`; 
-
     // in nodejs,  in get-book-info,  parse query parameter and get booktile value
     let bookInfo = await fetch(bookUrl, {
         method: 'GET'

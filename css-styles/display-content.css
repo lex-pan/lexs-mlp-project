@@ -5,10 +5,10 @@
   grid-template-columns: repeat(auto-fill, 31em);
   grid-auto-rows: minmax(28em, 28em); /* Makes sure that the height of the head of the display stays the same when the navigations for lists pop up and when window is resized*/
   flex-wrap: wrap;
-  margin-top: -2em;
   justify-content: center;
   align-items: center;
   margin-bottom: 3em;
+  margin-top: -3em;
 }
 
 /* Start of layout for images, title of medias, and descriptions of the book/movie itself*/  
@@ -262,6 +262,11 @@
   cursor: pointer;
 }
 
+.remove-book-button:hover {
+  background-color: rgb(0, 153, 255);
+  color: white
+}
+
 .remove-book-button h3 {
   margin: 6px;
 }
@@ -281,4 +286,40 @@
   color: white;
 }
 
+.pagination {
+  position: relative;
+  margin-top: 0.8em;
+  display: grid;
+  grid-template-columns: repeat(8, 1fr);
+  height: 2em;
+  width: 28em;
+  left: 50%;
+  transform: translate(-50%, 0);
+  visibility: hidden;
+  margin-bottom: 2em;
+}
 
+.pagination-page-numbers {
+  border: 1px solid rgb(0, 153, 255);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  margin-left: 0.2em;
+  margin-right: 0.2em;
+  background-color: white;
+  color: rgb(0, 153, 255);
+}
+
+.pagination-page-numbers:hover {
+  background-color: rgb(0, 153, 255);
+  color: white;
+}
+
+.previous {
+  width: 5em;
+}
+
+.next {
+  width: 5em;
+}

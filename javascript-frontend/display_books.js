@@ -29,12 +29,12 @@ document.addEventListener('click', e => {
     }
 })
 
-async function mbnSearch() {
-    if (event.key === "Enter") { 
+async function mbnSearch(pageNumber) {
+    if (event.key === "Enter" || pageNumber > 1) { 
         let userInput = document.getElementById("mbnSearchBar").value; //Gets what user types in //
-        //let userPageSearch = document.getElementsByClassName("page-number");
-
-        const bookResult = await fetch(`https://www.googleapis.com/books/v1/volumes?q=${userInput}&maxResults=39`) //Contacts google api //
+        let userPageSearch = (pageNumber-1)*39;
+        console.log(`https://www.googleapis.com/books/v1/volumes?q=${userInput}&maxResults=39&startIndex=${userPageSearch}`)
+        const bookResult = await fetch(`https://www.googleapis.com/books/v1/volumes?q=${userInput}&maxResults=39&startIndex=${userPageSearch}`) //Contacts google api //
             .then(res => res.json())            // gets response and converts into json //
         displaySearchResults(bookResult);
         return bookResult
@@ -50,6 +50,12 @@ function displaySearchResults(data) {
     while (booksFilmsAlreadyPresent.length > 0) {
         booksFilmsAlreadyPresent[0].remove();
     }
+
+    const displayPagination = document.getElementsByClassName("pagination")[0]
+    const displayPaginationTwo = document.getElementsByClassName("pagination")[1]
+
+    displayPagination.style.visibility = "visible"
+    displayPaginationTwo.style.visibility = "visible"
 
     for (i=0; i < data.items.length; i++){
         const dataInfo = data.items[i].volumeInfo;
@@ -98,6 +104,7 @@ function displaySearchResults(data) {
         const displaySection = document.getElementById('all-movies-display'); // Creates section for displaying data//
         displaySection.appendChild(dataDiv); // adds the div into section for displaying data //
 
+
         // ()=> console.log(1)
         dataDiv.getElementsByClassName("media-title")[0].addEventListener('click', renderBookInfo);
         dataDiv.getElementsByClassName("item-adder-icon")[0].addEventListener('click', () => userBookorFilmSubmitForm(dataTitle));
@@ -127,6 +134,36 @@ function createStarRating(rating){
     }
 }
 
+//call mbn search if button pressed is a number
+// change numbers if 
+function nextPageSearch() {
+    const buttonPageAction = event.target.innerHTML
+    if (isNaN(buttonPageAction) == true) {
+        const pageQueryButtons = document.querySelectorAll("button.pagination-page-numbers");
+        const lowestNumber = parseInt(document.getElementsByClassName("lowest-number")[0].innerHTML);
+
+        if (buttonPageAction.includes("Prev") == true) {
+            for (i=0; i < pageQueryButtons.length; i++) {
+                if (!(isNaN(pageQueryButtons[i].innerHTML)) && lowestNumber > 1) {
+                    pageQueryButtons[i].innerHTML =parseInt(pageQueryButtons[i].innerHTML) - 1;
+                }
+            } 
+        }
+        if (buttonPageAction.includes("Next") == true) {
+            for (i=0; i < pageQueryButtons.length; i++) {
+                if (!(isNaN(pageQueryButtons[i].innerHTML))) {
+                    pageQueryButtons[i].innerHTML = parseInt(pageQueryButtons[i].innerHTML) + 1;
+                }
+            } 
+        }
+    
+    } else {
+        pageNumber = parseInt(buttonPageAction)
+        console.log(pageNumber)
+        mbnSearch(pageNumber)
+    }
+}
+
 function displaySingleBook(bookInfo) {
     let hideFilterButtons = document.getElementsByClassName("filter-sort-search")[0];
     hideFilterButtons.style.display = "none";
@@ -150,6 +187,7 @@ function displaySingleBook(bookInfo) {
               <p>Average Rating: ${bookInfo.book_rating}</p> 
               <p>members: ${bookInfo.book_rating_count}</p>
               <button class="add-to-collection-button"><h3>Add to collection</h3></button>
+              <button class="remove-from-collection-button"><h3>Remove from collection</h3></button>
             </div>
             <div class="book-stats">
               <p>Book Authors: ${bookInfo.book_authors}</p>
@@ -166,7 +204,11 @@ function displaySingleBook(bookInfo) {
       <button class="book-section-button"><h3>Book Information</h3></button>
       <button class="book-section-button"><h3>Book Statistics</h3></button>
     `;
+    const closePaginationOne = document.getElementsByClassName("pagination")[0]
+    closePaginationOne.style.visibility = "hidden";
 
+    const closePaginationTwo = document.getElementsByClassName("pagination")[1]
+    closePaginationTwo.style.visibility = "hidden";
 
     if (document.readyState == 'loading') {
         document.addEventListener('DOMContentLoaded', activate_book_profile_buttons);
@@ -196,13 +238,23 @@ function activate_book_profile_buttons(){
         let getGiveActive = event.target.closest("button.book-section-button");
         getGiveActive.classList.toggle('sectionDropdown');
     }
-    const arrowButton = document.getElementsByClassName("back-arrow")[0];
-    arrowButton.addEventListener('click', backToBookSearchResults);
+
+    if (window.location.pathname.endsWith('user.html')) {
+        const arrowButton = document.getElementsByClassName("back-arrow")[0];
+        arrowButton.addEventListener('click', backToUserBookList);
+    } else {
+        const arrowButton = document.getElementsByClassName("back-arrow")[0];
+        arrowButton.addEventListener('click', backToBookSearchResults);
+    }
+
 
     const collectionButton = document.getElementsByClassName("add-to-collection-button")[0]
-    const titleOfBook = document.getElementById("front-of-site").innerHTML
-
     collectionButton.addEventListener('click', () => userBookorFilmSubmitForm(titleOfBook))
+
+    const removalButton = document.getElementsByClassName("remove-from-collection-button")[0]
+    removalButton.addEventListener('click', () => bookFilmremoveForm(titleOfBook))
+
+    const titleOfBook = document.getElementById("front-of-site").innerHTML
 }
 
 function backToBookSearchResults() {
@@ -217,6 +269,12 @@ function backToBookSearchResults() {
 
     let showBooks = document.getElementById("all-movies-display");
     showBooks.style.display = "grid";
+
+    const closePaginationOne = document.getElementsByClassName("pagination")[0]
+    closePaginationOne.style.visibility = "visible";
+
+    const closePaginationTwo = document.getElementsByClassName("pagination")[1]
+    closePaginationTwo.style.visibility = "visible";
 }
 
 function userBookorFilmSubmitForm(itemTitle) {
@@ -265,11 +323,16 @@ if (document.readyState == 'loading') {
 }
 
 function ready() {
+    const paginationButtons = document.querySelectorAll('button.pagination-page-numbers');
+    for (i=0; i < paginationButtons.length; i++) {
+        paginationButtons[i].addEventListener('click', nextPageSearch)
+    }
+
     const closeBookAddButton = document.getElementsByClassName('close-add-book-form')[0];
     closeBookAddButton.addEventListener('click', closeSubmitForm);
 
     const removeBookFormButton = document.getElementsByClassName('close-remove-form')[0];
-    removeBookFormButton.addEventListener('click', closeRemoveBookForm)
+    removeBookFormButton.addEventListener('click', closeRemoveBookForm);
 
     const userBookorFilmSubmitButton = document.getElementsByClassName('user-selection-complete')[0];
     userBookorFilmSubmitButton.addEventListener('click', closeSubmitForm);
