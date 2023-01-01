@@ -100,7 +100,6 @@ async function get_books_from_uab_db(username) {
     const books = await user_database.query(`SELECT book_title, book_authors, book_publisher, book_page_count, user_rating, book_image, book_description, user_comment, user_book_status, book_publish_date 
                                              FROM users_and_books INNER JOIN books ON book_title = book_name 
                                              WHERE username = '${username}';`);
-    console.log(books.rows)
     return books.rows
 }
 

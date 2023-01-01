@@ -146,7 +146,6 @@ async function getUserBooks() {
 
   
   function displaySingleUserBook(book) {
-    console.log(book)
     let bookTitlePosition = document.getElementById("front-of-site")
     bookTitlePosition.innerHTML = book.book_title;
     const hideUserSections = document.getElementsByClassName("user-sections")[0]

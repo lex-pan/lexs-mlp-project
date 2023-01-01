@@ -1,5 +1,4 @@
 .user-sections {
-    margin-top: 1em;
     display: grid;
     grid-template-columns: auto auto auto auto;
     align-items: center;
