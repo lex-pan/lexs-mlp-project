@@ -304,11 +304,15 @@ function toUserPage() {
 }
 
 function bookFilmremoveForm(title) {
-    const bookTitle = document.getElementById("remove-book-title")
-    bookTitle.innerHTML = `Remove: ${title}`
+    if (checkIfUserLoggedIn() == "User logged in") {
+        const bookTitle = document.getElementById("remove-book-title")
+        bookTitle.innerHTML = `Remove: ${title}`
+        const removeBookForm = document.getElementById('remove-book-form')
+        removeBookForm.classList.add('sectionDisplay');
+    } else {
+        alert("Must be logged in")
+    }
 
-    const removeBookForm = document.getElementById('remove-book-form')
-    removeBookForm.classList.add('sectionDisplay');
 }
 
 function closeRemoveBookForm() {

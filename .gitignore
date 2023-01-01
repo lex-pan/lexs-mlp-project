@@ -2,5 +2,3 @@
 node_modules
 config.js
 SESSION_SECRET=secret
-package-lock.json
-package.json
