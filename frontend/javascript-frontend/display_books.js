@@ -296,10 +296,16 @@ function closeSubmitForm() {
 }
 
 function toUserPage() {
-    if (checkIfUserLoggedIn() == "User logged in") {
+    if (checkIfUserLoggedIn() == "User logged in" && window.location.pathname.endsWith('index.html') == true) {    
+        window.location.href = "user/user.html"
+    } else if (checkIfUserLoggedIn() == "User logged in" && window.location.pathname.endsWith('index.html') == false) {
         window.location.href = "../user/user.html";
     } else {
-        window.location.href = "../user/user_login_page.html";
+        if (checkIfUserLoggedIn() != "User logged in" && window.location.pathname.endsWith('index.html') == true) {    
+            window.location.href = "user/user_login_page.html";
+        } else {
+            window.location.href = "../user/user_login_page.html";
+        } 
     }
 }
 
@@ -333,13 +339,21 @@ function ready() {
     }
 
     const closeBookAddButton = document.getElementsByClassName('close-add-book-form')[0];
-    closeBookAddButton.addEventListener('click', closeSubmitForm);
+    if (closeBookAddButton != undefined) {
+        closeBookAddButton.addEventListener('click', closeSubmitForm);
+    }
 
+
+    
     const removeBookFormButton = document.getElementsByClassName('close-remove-form')[0];
-    removeBookFormButton.addEventListener('click', closeRemoveBookForm);
+    if (removeBookFormButton != undefined) {
+        removeBookFormButton.addEventListener('click', closeRemoveBookForm);
+    }
 
     const userBookorFilmSubmitButton = document.getElementsByClassName('user-selection-complete')[0];
-    userBookorFilmSubmitButton.addEventListener('click', closeSubmitForm);
+    if (userBookorFilmSubmitButton != undefined) {
+        userBookorFilmSubmitButton.addEventListener('click', closeSubmitForm);
+    }
 }
 
 

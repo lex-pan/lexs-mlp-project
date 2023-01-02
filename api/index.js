@@ -12,7 +12,7 @@ app.post('/login', async(req, res)=>{
     const username = req.body.username;
     const password = req.body.password;
     const verify = await userDatabase.authenticateUser(username, password);
-    if (verify == "Either the username or password is incorrect") {
+    if (verify == "Either the username or password is incorrect" || verify == "Database Error") {
         res.json("failure")
     } else {
         res.json(verify)

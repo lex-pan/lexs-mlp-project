@@ -41,7 +41,7 @@ async function addToDatabaseOfBooks(data) {
                 averageRating = 0;
             }
 
-            const rawResponse = await fetch('http://localhost:5000/add-to-book-database', {
+            const rawResponse = await fetch('https://mlp-api.onrender.com/add-to-book-database', {
                 method: 'POST',
                 headers: {
                   'Accept': 'application/json',
@@ -58,7 +58,7 @@ async function addToDatabaseOfBooks(data) {
 
 async function renderBookInfo() {
     const getBookTitle = event.target.closest('h3').innerHTML;
-    let bookUrl = 'http://localhost:5000/get-book-info?booktitle=' + `${getBookTitle}`; 
+    let bookUrl = `${apiLink}/get-book-info?booktitle=` + `${getBookTitle}`; 
     // in nodejs,  in get-book-info,  parse query parameter and get booktile value
     let bookInfo = await fetch(bookUrl, {
         method: 'GET'

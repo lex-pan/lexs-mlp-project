@@ -1,5 +1,9 @@
-const get_database_info = require('./config');
-const book_database = get_database_info.pool
+require('dotenv').config()
+const connectionString = process.env.connectionString
+const Pool = require('pg').Pool
+const book_database = new Pool({
+    connectionString
+})
 
 async function checkIfUniqueBook(bookTitle){
 

@@ -1,24 +1,29 @@
 const bcrypt = require('bcrypt');
-const get_database_info = require('./config');
-const user_database = get_database_info.pool
+require('dotenv').config();
+connectionString = process.env.connectionString
+const Pool = require('pg').Pool
+const user_database = new Pool({
+    connectionString
+})
 
 async function checkIfUserAlreadyExists(username){
     try {
+        console.log("SELECT * FROM users WHERE username= '" + username + "';")
         const check = await user_database.query("SELECT * FROM users WHERE username= '" + username + "';")
+        console.log(check)
         if (check.rows[0] == undefined) {
             return "Valid Username"
         } else {
             return check.rows[0]
         }
     } catch {
-        if (err) {
-            return "Error"
-        }
+        return "Database Error"
     }
 }
 
 async function addUserToDatabase(username, password, email) {
     const checkAndAdd = await checkIfUserAlreadyExists(username);
+
     if (checkAndAdd == "Valid Username") {
         console.log("User added to database")
         user_database.query("INSERT INTO users (username, password, email)" + " VALUES ('" + username + "', '" + password + "', '"+ email + "');")
@@ -29,6 +34,10 @@ async function addUserToDatabase(username, password, email) {
 
 async function authenticateUser(username, password) {
     const checkAndLogin = await checkIfUserAlreadyExists(username);
+    console.log(checkAndLogin)
+    if (checkAndLogin == "Database Error") {
+        return "Database Error"
+    }
     if (checkAndLogin != "Valid Username") {
         passwordComparision = await (bcrypt.compare(password, checkAndLogin.password))
         if (passwordComparision == true) {
@@ -121,4 +130,3 @@ module.exports = {
     delete_book_from_uab_db,
     get_books_from_uab_db
 }
-

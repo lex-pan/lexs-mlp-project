@@ -1,3 +1,5 @@
+let apiLink = "https://mlp-api.onrender.com"
+
 async function register(event) {
     // Gets the username, password, and email values from the form input
     const username = document.getElementsByClassName('username')[0].value
@@ -5,7 +7,7 @@ async function register(event) {
     const email = document.getElementsByClassName('email')[0].value
 
     // sends an asychronous post request to portal 5000 and turns the html content within into JSON
-    const rawResponse = await fetch('http://localhost:5000/register', {
+    const rawResponse = await fetch(`${apiLink}/register`, {
         method: 'POST',
         headers: {
           'Accept': 'application/json',
@@ -15,7 +17,7 @@ async function register(event) {
     });
 
     const token = await rawResponse.json();
-
+    console.log(token)
     if (token["entry"] == "successful"){
       window.location.href = "../user/user_login_page.html";
     } else {
@@ -28,7 +30,7 @@ async function login(event){
   const username = document.getElementsByClassName('username')[0].value
   const password = document.getElementsByClassName('password')[0].value
 
-  const rawResponse = await fetch('http://localhost:5000/login', {
+  const rawResponse = await fetch(`${apiLink}/login`, {
     method: 'POST',
     headers: {
       'Accept': 'application/json',
@@ -71,7 +73,7 @@ async function addToUserBookCollection() {
   const userComment = document.getElementsByClassName('user-book-film-description')[0].value;
   const username = sessionStorage.getItem("username");
   
-  const rawResponse = await fetch('http://localhost:5000/add-to-user-book-collection', {
+  const rawResponse = await fetch(`${api}/add-to-user-book-collection`, {
     method: 'POST',
     headers: {
       'Accept': 'application/json',
@@ -90,8 +92,7 @@ async function removeBookFromCollection() {
   bookTitle = bookTitle.slice(8)
   bookTitle = bookTitle.replaceAll("'", "")
   const username = sessionStorage.getItem("username");
-
-  const rawResponse = await fetch(`http://localhost:5000/remove-from-user-book-collection/${username}/${bookTitle}`, {
+  const rawResponse = await fetch(`${apiLink}/remove-from-user-book-collection/${username}/${bookTitle}`, {
     method: 'DELETE',
   })
 
@@ -114,7 +115,7 @@ async function getUserBooks() {
   droppedSection.innerHTML = "";
 
   const username = sessionStorage.getItem("username");
-    const userBookUrl = `http://localhost:5000/get-user-books?username=${username}`
+    const userBookUrl = `${apiLink}/get-user-books?username=${username}`
     const rawResponse = await fetch(userBookUrl, {
       method: 'GET'
     });
