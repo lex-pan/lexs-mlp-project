@@ -1,6 +1,7 @@
 # Lex-s-Website
-A website for users to keep track of book progress. 
-https://myreads-u33e.onrender.com/
+A website for users to keep track of book progress. To search for books, go to the All Books section. To create an account click on the user text on the top right of the page.
+https://myreads-u33e.onrender.com/books/all-books.html
+
 
 Users are able to query for books using the google books api through the search bar input and are able to view more books based on page number selected. 
 ![Screenshot_20230101_093302](https://user-images.githubusercontent.com/40491375/210174591-c542b059-5e80-4ada-919f-2dda4539ebd4.png)
